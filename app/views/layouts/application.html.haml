@@ -1,20 +1,19 @@
 !!! 5
+= render 'layouts/shim'
 
 %html
   %head
 
-    %title 
-      GameTime
-      =controller.controller_name.capitalize
+    %title= "GameTime " + controller.controller_name.capitalize
 
     %meta{:charset => 'utf-8'}
     = csrf_meta_tags
-    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
 
-    %body
-      %header
-      #container
-        = yield 
-      %footer
-        = debug(params) 
+  %body
+    = render 'layouts/header'
+    .container
+      = yield 
+
+    = render 'layouts/footer'

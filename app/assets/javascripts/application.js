@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require_tree .
 //
-// Loads all Bootstrap javascripts
-//= require bootstrap
+// Loads all Bootstrap javascripts (add = to enable)
+// require bootstrap
