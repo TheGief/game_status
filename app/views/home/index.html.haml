@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 .center.hero-unit
   %h1 Home#index
   %h2 Find me in app/views/home/index.html.haml
   = link_to "Register", '#', class: "btn btn-large btn-primary"
+=======
+%h1 Game Status
+.notice
+  = flash[:notice]
+- if current_user.nil?
+  = link_to("Login", { :controller => "sessions", :action => "new" })
+- else
+  = current_user.email
+  = link_to("My Account", { :controller => "users", :action => "show", :id => current_user.id })
+  = link_to("Logout", { :controller => "sessions", :action => "destroy" })
+>>>>>>> add-sessions

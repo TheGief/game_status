@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   					uniqueness: { case_sensitive: false }
 
   # 
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, length: { minimum: 6 }
 
   before_save { |user| user.email = email.downcase }
 

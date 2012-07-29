@@ -1,6 +1,10 @@
 GameStatus::Application.routes.draw do
   get "home/index"
   resources :users
+  resources :sessions
+  
+  match 'login' => 'sessions#new'
+  match 'logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
