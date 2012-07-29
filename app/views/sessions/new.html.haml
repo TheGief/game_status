@@ -1,6 +1,7 @@
 %h1 Login
-.notice
-  = flash.now[:alert]
+- if flash.now[:alert]
+  .alert.alert-error
+    = flash.now[:alert]
 = form_tag sessions_path do
   .field
     = label_tag "Username"
