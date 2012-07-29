@@ -1,15 +1,15 @@
 %header.navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to "Game Time", '#', id: "logo"
+      = link_to "Game Time", '/', id: "logo"
       %nav
         %ul.nav.pull-right
-          - if current_user.nil?
-            %li= link_to("Login", { :controller => "sessions", :action => "new" })
-          - else
+          - if logged_in?
             %li= link_to "Home", '#'
             %li= link_to "Friends", '#'
             %li= link_to "Settings", '#'
-            %li= link_to("Account", { :controller => "users", :action => "show", :id => current_user.id })
-            %li= link_to("Logout", { :controller => "sessions", :action => "destroy" })
+            %li= link_to "Account", { :controller => "users", :action => "show", :id => current_user.id }
+            %li= link_to "Logout", { :controller => "sessions", :action => "destroy" }
+          - else
+            %li= link_to "Login", { :controller => "sessions", :action => "new" }
             

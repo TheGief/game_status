@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def new
     # redirect if already logged in
-    unless current_user.nil?
+    if logged_in?
       redirect_to root_url
     end
   end

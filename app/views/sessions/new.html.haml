@@ -1,13 +1,15 @@
 %h1 Login
+
 - if flash.now[:alert]
   .alert.alert-error
-    = flash.now[:alert]
-= form_tag sessions_path do
+    =flash.now[:alert]
+
+=form_tag sessions_path do
   .field
-    = label_tag "Username"
-    = text_field_tag :email, params[:email]
+    =label_tag "Username"
+    =text_field_tag :email, params[:email]
   .field
-    = label_tag :password
-    = password_field_tag :password
+    =label_tag :password
+    =password_field_tag :password
   .actions
-    = submit_tag "Login"
+    =submit_tag "Login"

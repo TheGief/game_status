@@ -8,6 +8,9 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]
     if @user.save
+      flash[:notice] = 'Account created.'
+      redirect_to login_path
+    else
       render :new
     end
   end
