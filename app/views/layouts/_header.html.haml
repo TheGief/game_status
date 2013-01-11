@@ -1,15 +1,18 @@
 %header.navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to "Game Time", '/', id: "logo"
-      %nav
+      = link_to "Game Time", root_path, class: "brand"
+      %a{:class => "btn btn-navbar", "data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %nav.nav-collapse
         %ul.nav.pull-right
           - if logged_in?
-            %li= link_to "Home", '#'
+            %li= link_to "Home", root_path
+            %li= link_to "Games", '#'
             %li= link_to "Friends", '#'
-            %li= link_to "Settings", '#'
-            %li= link_to "Account", { :controller => "users", :action => "show", :id => current_user.id }
-            %li= link_to "Logout", { :controller => "sessions", :action => "destroy" }
+            %li= link_to "Account", user_path(current_user)
+            %li= link_to "Logout", logout_path
           - else
-            %li= link_to "Login", { :controller => "sessions", :action => "new" }
-            
+            %li= link_to "Login", login_path
