@@ -1,4 +1,4 @@
-game_status
+Game Status
 ===========
 
-Viewable at http://evening-sunrise-2359.herokuapp.com/
+Viewable at http://gamestatus.herokuapp.com/
