@@ -10,7 +10,7 @@ feature "Sign in" do
     visit login_path
     fill_in 'email', with: @user.email
     fill_in 'password', with: @user.password
-    click_button 'Login'
+    click_button 'Go!'
     page.should have_content('Logout')
     current_path.should eq(root_path)
   end
@@ -19,7 +19,7 @@ feature "Sign in" do
     visit login_path
     fill_in 'email', with: @user.email
     fill_in 'password', with: "wrong_password"
-    click_button 'Login'
+    click_button 'Go!'
     page.should have_content('Invalid')
     current_path.should eq(sessions_path)
   end
