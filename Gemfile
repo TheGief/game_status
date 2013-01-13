@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'pg'
 gem 'sass-rails', '~> 3.2'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'pg'
 
 group :assets do
   gem 'haml-rails'
@@ -15,9 +15,13 @@ group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
 
-group :test, :development do
-  gem 'factory_girl_rails'
+group :development, :test do
+  gem 'mysql2'
   gem 'rspec-rails', '~> 2.0'
+end
+
+group :test do
+  gem 'factory_girl_rails'
   gem 'shoulda', '~> 3.1'
   gem 'guard-rspec'
   gem 'guard-spork'
