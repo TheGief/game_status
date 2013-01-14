@@ -1,0 +1,16 @@
+%p#notice= notice
+
+.row
+  .span3.game
+    %h1.page-header= @game.title
+    %p= cover_img(@game, edit: true)
+    .btn-group
+      = link_to 'Edit', edit_game_path(@game), class: 'btn btn-success'
+      = link_to 'Delete', @game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+      = link_to 'Back', games_path, class: 'btn btn-info'
+
+  .span9.info
+    %h2 Friends playing this game:
+    .well
+    %h3 Available platforms:
+    .well

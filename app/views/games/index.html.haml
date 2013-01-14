@@ -1,0 +1,10 @@
+.page-header
+  %h1 Available games
+  %h4= link_to 'Add Game', new_game_path
+.row
+  - @games.each do |game|
+    .span4.game
+      .game-img
+        = cover_img(game)
+      .game-info
+        %h3= link_to game.title, game

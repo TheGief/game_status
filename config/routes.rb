@@ -1,8 +1,10 @@
 GameStatus::Application.routes.draw do
+
   root :to => 'home#index'
   
   resources :users
   resources :sessions
+  resources :games
   
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'

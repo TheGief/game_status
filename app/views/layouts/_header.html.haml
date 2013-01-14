@@ -10,7 +10,7 @@
         %ul.nav.pull-right
           - if logged_in?
             %li= link_to "Home", root_path
-            %li= link_to "Games", '#'
+            %li= link_to "Games", games_path
             %li= link_to "Friends", '#'
             %li= link_to "Account", user_path(current_user)
             %li= link_to "Logout", logout_path
