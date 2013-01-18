@@ -46,8 +46,8 @@ describe GamesController do
       before do
         post :create, game: { title: 'Starcraft 2', image_url: '' }
       end
-      xit { should render_template(:new) }
-      xit "does not save the new game in the database" do
+      it { should render_template(:new) }
+      it "does not save the new game in the database" do
         Game.find_by_title('Starcraft 2').should be_nil
       end
     end
@@ -76,10 +76,10 @@ describe GamesController do
 
     context "with invalid attributes" do
       before do
-        post :update, id: game.id, game: { title: 'Starcraft 2', image_url: '' }
+        post :update, id: game.id, game: { title: 'Starcraft 2', image_url: 'randomstring' }
       end
-      xit { should render_template(:new) }
-      xit "does not save the new game in the database" do
+      it { should render_template(:edit) }
+      it "does not save the new game in the database" do
         Game.find_by_title('Starcraft 2').should be_nil
       end
     end
