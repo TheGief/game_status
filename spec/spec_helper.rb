@@ -25,4 +25,12 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
+
+  # Reload models
+  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
+    load model
+  end
+
+  # Reload routes
+  Rails.application.reload_routes!
 end
