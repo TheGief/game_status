@@ -5,6 +5,7 @@ gem 'sass-rails', '~> 3.2'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'pg'
+gem 'twilio-ruby'
 
 group :assets do
   gem 'haml-rails'
