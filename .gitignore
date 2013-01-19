@@ -19,3 +19,6 @@
 
 # Ignore config files
 /config/database.yml
+
+# Ignore Heroku Env Var File
+/.env
