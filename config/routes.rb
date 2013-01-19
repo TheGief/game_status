@@ -8,6 +8,7 @@ GameStatus::Application.routes.draw do
   
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
+  get 'text/:id' => 'notifications#send_text_message', :as => 'text'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
