@@ -1,0 +1,14 @@
+%p#notice= notice
+
+.row
+  .span3.game
+    %h1.page-header= @console.title
+    %p= cover_img(@console, edit: true)
+    .btn-group
+      = link_to 'Edit', edit_console_path(@console), class: 'btn btn-success'
+      = link_to 'Delete', @console, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+      = link_to 'Back', consoles_path, class: 'btn btn-info'
+
+  .span9.info
+    %h2 Friends playing this console:
+    .well

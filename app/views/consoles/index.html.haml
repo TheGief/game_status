@@ -1,0 +1,10 @@
+.page-header
+  %h1 Available consoles
+  %h4= link_to 'Add consoles', new_console_path
+.row
+  - @consoles.each do |console|
+    .span4.game
+      .game-img
+        = cover_img(console)
+      .game-info
+        %h3= link_to console.title, console

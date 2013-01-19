@@ -1,0 +1,14 @@
+= form_for @console, html: { class: 'form-horizontal' } do |f|
+
+  .control-group
+    = f.label :title, class: 'control-label'
+    .controls
+      = f.text_field :title
+  .control-group
+    = f.label :image_url, class: 'control-label'
+    .controls
+      = f.text_field :image_url
+  .control-group
+    .controls
+      = f.submit 'Save', class: 'btn btn-success'
+      = link_to 'Cancel', consoles_path, class: 'btn btn-info'

@@ -5,6 +5,7 @@ GameStatus::Application.routes.draw do
   resources :users
   resources :sessions
   resources :games
+  resources :consoles
   
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
