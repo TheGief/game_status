@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119235538) do
+ActiveRecord::Schema.define(:version => 20130120061108) do
 
   create_table "consoles", :force => true do |t|
     t.string   "title"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20130119235538) do
     t.integer "game_id"
     t.integer "user_id"
   end
+
+  add_index "games_users", ["user_id", "game_id"], :name => "index_games_users_on_user_id_and_game_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
