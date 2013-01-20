@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :email, :phone, :password
 
+  has_and_belongs_to_many :games
+
   # unique email address
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }

@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @own_game = current_user.games.exists?(params[:id])
     @game = Game.find(params[:id])
   end
 
@@ -40,4 +41,15 @@ class GamesController < ApplicationController
     redirect_to games_url
   end
 
+  def add
+    unless current_user.games.exists?(params[:id])
+      current_user.games<<Game.find(params[:id])
+    end
+    redirect_to game_url
+  end
+
+  def remove
+    current_user.games.delete(Game.find(params[:id]))
+    redirect_to game_url
+  end
 end

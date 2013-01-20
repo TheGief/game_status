@@ -5,10 +5,13 @@
     %h1.page-header= @game.title
     %p= cover_img(@game, edit: true)
     .btn-group
+      -if @own_game
+        = link_to 'Remove', remove_game_path(@game), class: 'btn btn-info'
+      - else
+        = link_to 'Add', add_game_path(@game), class: 'btn btn-info'
+    .btn-group
       = link_to 'Edit', edit_game_path(@game), class: 'btn btn-success'
       = link_to 'Delete', @game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-      = link_to 'Back', games_path, class: 'btn btn-info'
-
   .span9.info
     %h2 Friends playing this game:
     .well
