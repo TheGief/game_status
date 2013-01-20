@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      cleanup_old_sessions
       redirect_to games_url, :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"

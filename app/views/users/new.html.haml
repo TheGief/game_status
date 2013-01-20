@@ -7,22 +7,34 @@
     .control-group
       %label.control-label{:for => 'username'} Username
       .controls
-        = f.text_field :username, {:class => 'input-xlarge'}
+        .input-prepend
+          %span.add-on
+            %i.icon-user
+          = f.text_field :username, {:class => 'input-large'}
     
     .control-group
       %label.control-label{:for => 'email'} E-Mail
       .controls
-        = f.text_field :email, {:class => 'input-xlarge'}
+        .input-prepend
+          %span.add-on
+            %i.icon-envelope
+          = f.text_field :email, {:class => 'input-large'}
 
     .control-group
-      %label.control-label{:for => 'email'} Phone
+      %label.control-label{:for => 'phone'} SMS Phone
       .controls
-        = f.text_field :phone, {:class => 'input-xlarge'}
+        .input-prepend
+          %span.add-on
+            %i.icon-signal
+          = f.text_field :phone, {:class => 'input-large'}
 
-    .control-group
+      .control-group
       %label.control-label{:for => 'password'} Password
       .controls
-        = f.password_field :password, {:class => 'input-xlarge'}
+        .input-prepend
+          %span.add-on
+            %i.icon-lock
+          = f.password_field :password, {:class => 'input-large'}
 
     .form-actions  
       = f.submit :class => 'btn btn-primary'
