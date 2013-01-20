@@ -43,7 +43,7 @@ class GamesController < ApplicationController
 
   def add
     unless current_user.games.exists?(params[:id])
-      current_user.games<<Game.find(params[:id])
+      current_user.games << Game.find(params[:id])
     end
     redirect_to game_url
   end

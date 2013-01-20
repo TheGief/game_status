@@ -12,6 +12,8 @@ GameStatus::Application.routes.draw do
   get 'text/:id' => 'notifications#send_text_message', :as => 'text'
   get 'games/:id/add' => 'games#add', :as => 'add_game'
   get 'games/:id/remove' => 'games#remove', :as => 'remove_game'
+  get 'consoles/:id/add' => 'consoles#add', :as => 'add_console'
+  get 'consoles/:id/remove' => 'consoles#remove', :as => 'remove_console'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

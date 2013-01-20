@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :email, :phone, :password
 
-  has_and_belongs_to_many :games
+  has_and_belongs_to_many :games, :uniq => true
+  has_and_belongs_to_many :consoles, :uniq => true
 
   # unique email address
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

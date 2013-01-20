@@ -5,6 +5,7 @@ class ConsolesController < ApplicationController
   end
 
   def show
+    @own_console = current_user.consoles.exists?(params[:id])
     @console = Console.find(params[:id])
   end
 
@@ -40,4 +41,15 @@ class ConsolesController < ApplicationController
     redirect_to consoles_url
   end
 
+  def add
+    unless current_user.consoles.exists?(params[:id])
+      current_user.consoles << Console.find(params[:id])
+    end
+    redirect_to console_url
+  end
+
+  def remove
+    current_user.consoles.delete(Console.find(params[:id]))
+    redirect_to console_url
+  end
 end
