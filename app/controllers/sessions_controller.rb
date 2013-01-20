@@ -24,4 +24,8 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Logged out!"
   end
   
+  def cleanup_old_sessions
+    # Sessions inactive for 24hrs are deleted
+    ActiveRecord::SessionStore::Session.delete_all(["updated_at < ?", 24.hours.ago])
+  end
 end

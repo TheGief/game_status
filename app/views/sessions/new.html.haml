@@ -1,11 +1,26 @@
-%h1.page-header Sign In
+%h1.page-header Login
 
-=form_tag sessions_path do
-  .field
-    =label_tag "Username"
-    =text_field_tag :username, params[:username]
-  .field
-    =label_tag :password
-    =password_field_tag :password
-  .actions
-    =submit_tag "Go!", class: 'btn'
+=form_tag sessions_path, :class => "form-horizontal" do
+  %fieldset
+    .control-group
+    %label.control-label{:for => 'username'} Username
+    .controls
+      .input-prepend
+        %span.add-on
+          %i.icon-user
+        =text_field_tag :username, params[:username], :class => 'input-large'
+
+    .control-group
+    %label.control-label{:for => 'password'} Password
+    .controls
+      .input-prepend
+        %span.add-on
+          %i.icon-lock
+        =password_field_tag :password, nil, :class => 'input-large'
+    
+    .control-group
+    .controls
+      =submit_tag "Go!", class: 'btn btn-primary'
+    
+
+      
