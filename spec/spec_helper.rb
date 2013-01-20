@@ -12,6 +12,7 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
+    config.include FactoryGirl::Syntax::Methods
     config.mock_with :mocha
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = false
@@ -25,12 +26,8 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
-
-  # Reload models
-  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
-    load model
-  end
-
-  # Reload routes
+  $VERBOSE = nil
+  Dir["#{Rails.root}/app/models/**/*.rb"].each { |model| load model }
+  $VERBOSE = false
   Rails.application.reload_routes!
 end

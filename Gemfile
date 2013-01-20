@@ -25,6 +25,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'rb-inotify', '~> 0.8.8'
   gem 'shoulda', '~> 3.1'
   gem 'guard-rspec'
   gem 'guard-spork'
