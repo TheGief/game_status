@@ -1,0 +1,22 @@
+%h1 Friends
+
+%ul
+- current_user.friends.each do |friend|
+  %li
+    = friend.username
+    
+%h2 Pending Friends
+
+%ul
+- current_user.pending_friends.each do |friend|
+  %li
+    = friend.username
+    = link_to  "Accept", accept_friendship_path(friend)
+    = link_to "Reject", reject_friendship_path(friend)
+    
+%h2 Requested Friends
+
+%ul
+- current_user.requested_friends.each do |friend|
+  %li
+    = friend.username

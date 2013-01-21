@@ -5,6 +5,23 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :games, :uniq => true
   has_and_belongs_to_many :consoles, :uniq => true
+  has_many :friendships
+  has_many :friends, 
+           :through => :friendships,
+           :conditions => "status = 'accepted'", 
+           :order => :username
+
+  has_many :requested_friends, 
+           :through => :friendships, 
+           :source => :friend,
+           :conditions => "status = 'requested'", 
+           :order => :created_at
+
+  has_many :pending_friends, 
+           :through => :friendships, 
+           :source => :friend,
+           :conditions => "status = 'pending'", 
+           :order => :created_at
 
   # unique email address
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

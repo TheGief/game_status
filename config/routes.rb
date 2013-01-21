@@ -6,14 +6,22 @@ GameStatus::Application.routes.draw do
   resources :sessions
   resources :games
   resources :consoles
-  
+
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
+  
   get 'text/:id' => 'notifications#send_text_message', :as => 'text'
+  
   get 'games/:id/add' => 'games#add', :as => 'add_game'
   get 'games/:id/remove' => 'games#remove', :as => 'remove_game'
+  
   get 'consoles/:id/add' => 'consoles#add', :as => 'add_console'
   get 'consoles/:id/remove' => 'consoles#remove', :as => 'remove_console'
+  
+  get 'friendship/req/:id' => 'friendships#req', :as => 'req_friendship'
+  get 'friendship/accept/:id' => 'friendships#accept', :as => 'accept_friendship'
+  get 'friendship/reject/:id' => 'friendships#reject', :as => 'reject_friendship'
+  get 'friends' => 'friendships#index', :as => 'friends'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
