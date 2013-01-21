@@ -2,15 +2,14 @@ GameStatus::Application.routes.draw do
 
   root :to => 'home#index'
   
-  resources :users
-  resources :sessions
+  devise_for :users
   resources :games
   resources :consoles
-
-  get 'login' => 'sessions#new', :as => 'login'
-  get 'logout' => 'sessions#destroy', :as => 'logout'
   
   get 'text/:id' => 'notifications#send_text_message', :as => 'text'
+
+  get 'user/:id' => 'users#show', :as => 'user'
+  get 'users' => 'users#index', :as => 'users'
   
   get 'games/:id/add' => 'games#add', :as => 'add_game'
   get 'games/:id/remove' => 'games#remove', :as => 'remove_game'
