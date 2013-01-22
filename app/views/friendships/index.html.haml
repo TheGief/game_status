@@ -1,22 +1,26 @@
-%h1 Friends
+.page-header
+  %h1 Friends
+  %h4= link_to 'Find Friends', users_path
 
-%ul
-- current_user.friends.each do |friend|
-  %li
-    = friend.username
-    
-%h2 Pending Friends
+%h3 Current
+.well
+  %ul
+  - current_user.friends.each do |friend|
+    %li
+      = friend.username
 
-%ul
-- current_user.pending_friends.each do |friend|
-  %li
-    = friend.username
-    = link_to  "Accept", accept_friendship_path(friend)
-    = link_to "Reject", reject_friendship_path(friend)
-    
-%h2 Requested Friends
+%h3 Pending
+.well
+  %ul
+  - current_user.pending_friends.each do |friend|
+    %li
+      = friend.username
+      = link_to  "Accept", accept_friendship_path(friend)
+      = link_to "Reject", reject_friendship_path(friend)
 
-%ul
-- current_user.requested_friends.each do |friend|
-  %li
-    = friend.username
+%h3 Requested
+.well
+  %ul
+  - current_user.requested_friends.each do |friend|
+    %li
+      = friend.username
