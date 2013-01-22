@@ -8,7 +8,7 @@ GameStatus::Application.routes.draw do
   
   get 'text/:id' => 'notifications#send_text_message', :as => 'text'
 
-  get 'user/:id' => 'users#show', :as => 'user'
+  get 'users/:id' => 'users#show', :as => 'user'
   get 'users' => 'users#index', :as => 'users'
   
   get 'games/:id/add' => 'games#add', :as => 'add_game'
