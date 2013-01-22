@@ -1,0 +1,13 @@
+%h1.page-header Users
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th Username
+      %th Games
+      %th Status
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to user.username, user_path(user)
+        %td= "0wns #{count(user.games)} on #{count(user.consoles)}."
+        %td= link_to "Add Friend", req_friendship_path(user)
