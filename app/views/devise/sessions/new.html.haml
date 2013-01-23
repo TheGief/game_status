@@ -1,16 +1,28 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render "devise/shared/links"
+%h2.page-header Sign in
+.row
+  .span6
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-vertical'}) do |f|
+      .control-group
+        = f.label :email, class: 'control-label'
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-user
+            = f.email_field :email, autofocus: true
+      .control-group
+        = f.label :password, class: 'control-label'
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-lock
+            = f.password_field :password
+      - if devise_mapping.rememberable?
+        .control-group
+          .controls
+            %label.checkbox
+              Remember Me
+              = f.check_box :remember_me
+            = f.submit 'Sign in', class: 'btn btn-primary'
+.row
+  .span6
+    = render 'devise/shared/links'
