@@ -3,7 +3,7 @@
 .row
   .span3.console
     %h1.page-header= @console.title
-    %p= console_img(@console, edit: true)
+    %p= cover_img(@console, edit: true)
     .btn-group
       -if @own_console
         = link_to 'Remove', remove_console_path(@console), class: 'btn btn-info'
