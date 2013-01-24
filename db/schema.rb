@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120213743) do
+ActiveRecord::Schema.define(:version => 20130124053118) do
 
   create_table "consoles", :force => true do |t|
     t.string   "title"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(:version => 20130120213743) do
 
   add_index "games_users", ["user_id", "game_id"], :name => "index_games_users_on_user_id_and_game_id"
 
+  create_table "play_times", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "console_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "duration"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -62,11 +73,11 @@ ActiveRecord::Schema.define(:version => 20130120213743) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "username"
     t.string   "email",                  :default => "", :null => false
-    t.string   "phone"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "phone"
+    t.string   "username"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

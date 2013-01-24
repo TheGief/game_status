@@ -52,4 +52,5 @@ class GamesController < ApplicationController
     current_user.games.delete(Game.find(params[:id]))
     redirect_to game_url
   end
+
 end

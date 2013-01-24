@@ -8,6 +8,7 @@ gem 'devise'
 gem 'pg'
 gem 'twilio-ruby'
 gem 'thin'
+gem 'chronic'
 
 group :assets do
   gem 'haml-rails'

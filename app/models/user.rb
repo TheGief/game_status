@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :games, :uniq => true
   has_and_belongs_to_many :consoles, :uniq => true
+  has_many :play_times
   has_many :friendships
   has_many :friends, 
            :through => :friendships,

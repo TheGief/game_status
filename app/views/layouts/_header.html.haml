@@ -9,6 +9,7 @@
       %nav.nav-collapse
         %ul.nav.pull-right
           - if user_signed_in?
+            %li= link_to "Play", play_path
             %li= link_to "Friends", friends_path
             %li= link_to 'Games', games_path
             %li= link_to 'Consoles', consoles_path
