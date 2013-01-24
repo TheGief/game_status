@@ -2,6 +2,7 @@ class PlayTimesController < ApplicationController
 
   def new
     @play_time = PlayTime.new
+    @play_times = current_user.play_times
   end
 
   def create

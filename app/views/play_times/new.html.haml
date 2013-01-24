@@ -1,25 +1,37 @@
-= form_for @play_time, html: { class: 'form-horizontal' } do |f|
-  .control-group
-    = f.label :start, "At", class: 'control-label'
-    .controls
-      = f.text_field :start, value: '8 pm', class: 'span1'
+.row
+  .span6
+    %h4 New Play Time
+    = form_for @play_time, html: { class: 'form-horizontal' } do |f|
+      .control-group
+        = f.label :start, "At", class: 'control-label'
+        .controls
+          = f.text_field :start, value: '8 pm', class: 'span1'
 
-  .control-group
-    = f.label :game_id, "I'm playing", class: 'control-label'
-    .controls
-      = f.select :game_id, options_from_collection_for_select(current_user.games, :id, :title)
+      .control-group
+        = f.label :game_id, "I'm playing", class: 'control-label'
+        .controls
+          = f.select :game_id, options_from_collection_for_select(current_user.games, :id, :title)
 
-  .control-group
-    = f.label :console_id, "on", class: 'control-label'
-    .controls
-      = f.select :console_id, options_from_collection_for_select(current_user.consoles, :id, :title)
+      .control-group
+        = f.label :console_id, "on", class: 'control-label'
+        .controls
+          = f.select :console_id, options_from_collection_for_select(current_user.consoles, :id, :title)
 
-  .control-group
-    = f.label :end, "for", class: 'control-label'
-    .controls
-      = f.text_field :end, value: '2 hrs', class: 'span1'
+      .control-group
+        = f.label :end, "for", class: 'control-label'
+        .controls
+          = f.text_field :end, value: '2 hrs', class: 'span1'
 
-  .control-group
-    .controls
-      = f.submit 'Save', class: 'btn btn-success'
-      = link_to 'Cancel', games_path, class: 'btn btn-info'
+      .control-group
+        .controls
+          = f.submit 'Save', class: 'btn btn-success'
+          = link_to 'Cancel', games_path, class: 'btn btn-info'
+  .span6
+    %h4 Existing Play Times
+    %blockquote
+      - @play_times.each do |play_time|
+        %p
+          = play_time.start.strftime "%a %l:%M%p"
+          = play_time.game_id
+        %small
+          = distance_of_time_in_words_to_now play_time.start
