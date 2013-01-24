@@ -32,6 +32,6 @@
       - @play_times.each do |play_time|
         %p
           = play_time.start.strftime "%a %l:%M%p"
-          = play_time.game_id
+          = Game.find(play_time.game_id).title
         %small
           = distance_of_time_in_words_to_now play_time.start
