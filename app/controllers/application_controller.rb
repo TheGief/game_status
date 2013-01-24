@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   # force_ssl
 
   def after_sign_in_path_for(resource)
-    friends_path
+    stored_location_for(resource) || friends_path
   end
 end
