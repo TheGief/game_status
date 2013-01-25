@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
 
-  has_and_belongs_to_many :games, :uniq => true
-  has_and_belongs_to_many :consoles, :uniq => true
+  has_and_belongs_to_many :games, :uniq => true, :order => :title
+  has_and_belongs_to_many :consoles, :uniq => true, :order => :title
   has_many :play_times, :conditions => "play_times.end > now()", :order => "start"
   has_many :friendships
   has_many :friends, 

@@ -5,12 +5,13 @@ class PlayTime < ActiveRecord::Base
 
   before_create :set_duration
 
-  # validates :start, :end, :game_id, :console_id, :user_id, :presence => true
+  validates :start, :end, :game_id, :console_id, :presence => true
+
   def in_progress?
     return true if self.start < Time.current && self.end > Time.current
     return false
   end
-  
+
   private
 
   def set_duration

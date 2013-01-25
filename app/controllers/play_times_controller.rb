@@ -11,10 +11,12 @@ class PlayTimesController < ApplicationController
     @play_time.start = Chronic.parse(params[:play_time][:start])
     @play_time.end = Chronic.parse(params[:play_time][:end] + ' from ' + params[:play_time][:start])
 
+    @play_times = current_user.play_times
+
     if @play_time.save
-      redirect_to friends_path, notice: 'Play time was successfully created.'
+      redirect_to play_path, notice: 'Play time was successfully created.'
     else
-      render play_path, notice: 'Please try again'
+      render action: 'new', params: params[:play_time]
     end
   end
 
