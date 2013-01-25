@@ -28,10 +28,14 @@
           = link_to 'Cancel', games_path, class: 'btn btn-info'
   .span6
     %h4 Existing Play Times
-    %blockquote
-      - @play_times.each do |play_time|
+    - @play_times.each do |play_time|
+      %blockquote
         %p
           = play_time.start.strftime "%a %l:%M%p"
           = Game.find(play_time.game_id).title
-        %small
-          = distance_of_time_in_words_to_now play_time.start
+          / = link_to '[edit]', edit_play_time_path(Game.find(play_time.game_id))
+          %small
+            - if play_time.in_progress?
+              In Progress
+            - else
+              = distance_of_time_in_words_to_now play_time.start
