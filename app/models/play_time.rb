@@ -14,7 +14,7 @@ class PlayTime < ActiveRecord::Base
   validate :check_start_time, :check_duration_text
 
   before_save :save_start_time, :save_duration_text
-  before_create :set_duration, :set_user_id
+  before_create :set_duration
 
   # start_time virtual attribute
   def start_time
