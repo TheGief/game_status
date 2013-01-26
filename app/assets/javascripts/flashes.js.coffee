@@ -3,7 +3,7 @@ $ ->
   alert_content = alert.html()
 
   $(document).ready ->
-    setTimeout (-> alert.slideUp()), 5000
+    # setTimeout (-> alert.slideUp()), 5000
 
   # Any 'notice' type flashes that mention 'success', use bootstrap alert-success class
   if /success/i.test(alert_content) and alert.hasClass('alert-notice')

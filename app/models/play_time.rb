@@ -12,7 +12,7 @@ class PlayTime < ActiveRecord::Base
 
   # 
   validate :dates_parseable?
-  validates :start, :end, :game_id, :console_id, :presence => true
+  validates :game_id, :console_id, :presence => true
 
   def in_progress?
     return true if self.start < Time.current && self.end > Time.current
@@ -22,8 +22,8 @@ class PlayTime < ActiveRecord::Base
   private
 
   def dates_parseable?
-    errors.add(:start, "Start Time invalid, try something like '6pm' or '10:15am'") unless Chronic.parse(self.start)
-    errors.add(:end, "Duration invalid, try something like '2 hrs' or '90 mins'") unless Chronic.parse(self.end)
+    errors.add("Start Time", "invalid, try something like '6pm' or '10:15am'") unless Chronic.parse(self.start)
+    errors.add("Duration", "invalid, try something like '2 hrs' or '90 mins'") unless Chronic.parse(self.end)
     logger.info errors.to_yaml
   end
 

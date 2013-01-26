@@ -1,8 +1,9 @@
 - if @play_time.errors.any?
   .alert.alert-error
+    %button.close{ type: 'button', data: { dismiss: 'alert' } } &times;
     %ul
-    -@play_time.errors.each do |key, msg|  
-      %li #{key} #{msg}
+      -@play_time.errors.each do |key, msg|  
+        %li #{key} #{msg}
 
 .row
   .span6
