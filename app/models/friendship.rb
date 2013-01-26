@@ -4,7 +4,7 @@ class Friendship < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :friend, :class_name => "User", :foreign_key => "friend_id"
-  
+
   validates_presence_of :user_id, :friend_id
   
   def self.are_friends(user, friend)
@@ -45,8 +45,6 @@ class Friendship < ActiveRecord::Base
   def self.reject(user, friend)
     f1 = find_by_user_id_and_friend_id(user, friend)
     f2 = find_by_user_id_and_friend_id(friend, user)
-    f1.to_yaml
-    f2.to_yaml
 
     # Only user who recieved request can reject it
     if f1.nil? or f2.nil? or f1.status == "requested"
