@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :token_authenticatable,
-    :confirmable, :lockable, :timeoutable #, :omniauthable
+    :confirmable, :lockable, # :timeoutable, :omniauthable
 
   before_save { |user| user.email = email.downcase }
 
