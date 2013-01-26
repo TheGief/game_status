@@ -1,0 +1,6 @@
+- if object.errors.any?
+  .alert.alert-error
+    %button.close{ type: 'button', data: { dismiss: 'alert' } } &times;
+    %ul.stack
+      - object.errors.each do |key, msg|  
+        %li #{key} #{msg}

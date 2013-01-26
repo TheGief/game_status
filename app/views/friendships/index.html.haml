@@ -4,23 +4,23 @@
 
 %h3 Current
 .well
-  %ul
-  - current_user.friends.each do |friend|
-    %li
-      = friend.username
+  %ul.stack
+    - current_user.friends.each do |friend|
+      %li
+        = friend.username
 
 %h3 Pending
 .well
-  %ul
-  - current_user.pending_friends.each do |friend|
-    %li
-      = friend.username
-      = link_to  "Accept", accept_friendship_path(friend)
-      = link_to "Reject", reject_friendship_path(friend)
+  %ul.stack
+    - current_user.pending_friends.each do |friend|
+      %li
+        = friend.username
+        = link_to  "Accept", accept_friendship_path(friend)
+        = link_to "Reject", reject_friendship_path(friend)
 
 %h3 Requested
 .well
-  %ul
-  - current_user.requested_friends.each do |friend|
-    %li
-      = friend.username
+  %ul.stack
+    - current_user.requested_friends.each do |friend|
+      %li
+        = friend.username

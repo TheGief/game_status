@@ -1,18 +1,12 @@
-- if @play_time.errors.any?
-  .alert.alert-error
-    %button.close{ type: 'button', data: { dismiss: 'alert' } } &times;
-    %ul
-      -@play_time.errors.each do |key, msg|  
-        %li #{key} #{msg}
-
+= render "layouts/validations", object: @play_time
 .row
   .span6
     %h4 New Play Time
     = form_for @play_time, html: { class: 'form-horizontal' } do |f|
       .control-group
-        = f.label :start, "At", class: 'control-label'
+        = f.label :start_time, "At", class: 'control-label'
         .controls
-          = f.text_field :start, placeholder: '8 pm', class: 'span2'
+          = f.text_field :start_time, placeholder: '8 pm', class: 'span2'
 
       .control-group
         = f.label :game_id, "I'm playing", class: 'control-label'
@@ -25,9 +19,9 @@
           = f.select :console_id, options_from_collection_for_select(current_user.consoles, :id, :title)
 
       .control-group
-        = f.label :end, "for", class: 'control-label'
+        = f.label :duration_text, "for", class: 'control-label'
         .controls
-          = f.text_field :end, placeholder: '2 hrs', class: 'span2'
+          = f.text_field :duration_text, placeholder: '2 hrs', class: 'span2'
 
       .control-group
         .controls
@@ -45,4 +39,5 @@
             - if play_time.in_progress?
               In Progress
             - else
+              in
               = distance_of_time_in_words_to_now play_time.start
