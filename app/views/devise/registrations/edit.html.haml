@@ -25,12 +25,16 @@
     .controls
       = f.time_zone_select :time_zone, nil, {}, {:default => "Pacific Time (US & Canada)", :class => 'span3'}
   
+  .control-group
+    .controls
+      = f.submit 'Update', class: 'btn btn-success'
+
+
   %legend Change Password
   .control-group
     = f.label :password, "Password", class: 'control-label'
     .controls
       = f.password_field :password, :autocomplete => 'off', class: 'span3'
-      %span.help-block Leave blank if you don't want to change
   
   .control-group
     = f.label :password_confirmation, "Password Confirmation", class: 'control-label'
@@ -41,7 +45,7 @@
     = f.label :current_password, "Current Password", class: 'control-label'
     .controls
       = f.password_field :current_password, class: 'span3'
-      %span.help-block Need your current password to confim your change
+
 
   .control-group
     .controls
