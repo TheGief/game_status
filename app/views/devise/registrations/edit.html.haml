@@ -1,30 +1,48 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+%h2 #{current_user.username}'s Account
+= form_for resource, :as => resource_name, :url => registration_path(resource_name), html: { method: :put, class: 'form-horizontal' } do |f|
   = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  %div
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, :autocomplete => "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password
-  %div= f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
-= link_to "Back", :back
+  
+  %legend Edit Account
+  .control-group
+    = f.label :username, "Username", class: 'control-label'
+    .controls
+      = f.text_field :username, autofocus: true, class: 'span3'
+
+  .control-group
+    = f.label :email, "E-Mail", class: 'control-label'
+    .controls
+      = f.email_field :email, class: 'span3'
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %span.help-block Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+  .control-group
+    = f.label :phone, "Cell Phone", class: 'control-label'
+    .controls
+      = f.telephone_field :phone, class: 'span3'
+
+  .control-group
+    = f.label :time_zone, "Time Zone", class: 'control-label'
+    .controls
+      = f.time_zone_select :time_zone, nil, {}, {:default => "Pacific Time (US & Canada)", :class => 'span3'}
+  
+  %legend Change Password
+  .control-group
+    = f.label :password, "Password", class: 'control-label'
+    .controls
+      = f.password_field :password, :autocomplete => 'off', class: 'span3'
+      %span.help-block Leave blank if you don't want to change
+  
+  .control-group
+    = f.label :password_confirmation, "Password Confirmation", class: 'control-label'
+    .controls
+      = f.password_field :password_confirmation, class: 'span3'
+
+  .control-group
+    = f.label :current_password, "Current Password", class: 'control-label'
+    .controls
+      = f.password_field :current_password, class: 'span3'
+      %span.help-block Need your current password to confim your change
+
+  .control-group
+    .controls
+      = f.submit 'Update', class: 'btn btn-success'

@@ -1,6 +1,6 @@
 class NotifyFriends < ActionMailer::Base
 
-  default from: "GameStat.us <admin@gamestatus.herokuapp.com>"
+  default from: "GameStat.us <admin@gamestat.us>"
 
   def play_time_created(play_time)
     @game = play_time.game
