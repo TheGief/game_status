@@ -9,5 +9,5 @@
     - @users.each do |user|
       %tr
         %td= link_to user.username, user_path(user)
-        %td= "0wns #{count(user.games)} on #{count(user.consoles)}."
+        %td= "Owns #{count(user.games)} and #{count(user.consoles)}."
         %td= link_to "Add Friend", req_friendship_path(user)

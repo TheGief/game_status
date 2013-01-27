@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me
+
+  attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :time_zone
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :token_authenticatable,
     :confirmable, :lockable # :timeoutable, :omniauthable
@@ -34,4 +35,6 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, format: { with: LETTERS_ONLY, :message => "is letters only" }, uniqueness: { case_sensitive: false }
   validates :phone, :presence => true, length: { minimum: 10, :message => "is full 10 digit cell number" }
   validates :password, presence: true, length: { minimum: 6 }
+  validates :time_zone, presence: true
+
 end

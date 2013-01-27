@@ -34,7 +34,6 @@
         %p
           = play_time.start.strftime "%a %l:%M%p"
           = play_time.game.title
-          / = link_to '[edit]', edit_play_time_path(Game.find(play_time.game_id))
           %small
             - if play_time.in_progress?
               In Progress

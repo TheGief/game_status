@@ -1,17 +1,36 @@
-%h2 Sign up
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+%h2 Create Account
+= form_for resource, :as => resource_name, :url => registration_path(resource_name), html: { class: 'form-horizontal' } do |f|
   = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div= f.submit "Sign up"
-= render "devise/shared/links"
+  .control-group
+    = f.label :username, "Username", class: 'control-label'
+    .controls
+      = f.text_field :username, autofocus: true, class: 'span3'
+  
+  .control-group
+    = f.label :password, "Password", class: 'control-label'
+    .controls
+      = f.password_field :password, class: 'span3'
+
+  .control-group
+    = f.label :password_confirmation, "Password Confirmation", class: 'control-label'
+    .controls
+      = f.password_field :password_confirmation, class: 'span3'
+
+  .control-group
+    = f.label :email, "E-Mail", class: 'control-label'
+    .controls
+      = f.email_field :email, class: 'span3'
+  
+  .control-group
+    = f.label :phone, "Cell Phone", class: 'control-label'
+    .controls
+      = f.text_field :phone, class: 'span3'
+
+  .control-group
+    = f.label :time_zone, "Time Zone", class: 'control-label'
+    .controls
+      = time_zone_select( "user", 'time_zone', ActiveSupport::TimeZone.us_zones, :default => "Pacific Time (US & Canada)")
+
+  .control-group
+    .controls
+      = f.submit 'Create', class: 'btn btn-success'
