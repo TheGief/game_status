@@ -2,6 +2,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    @owned_games = current_user.games
   end
 
   def show
