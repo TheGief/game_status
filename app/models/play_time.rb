@@ -26,8 +26,6 @@ class PlayTime < ActiveRecord::Base
   end
 
   def check_start_time
-    logger.info @start_time.to_yaml
-    logger.info @duration_text.to_yaml
     if !@start_time.present?
       errors.add "Start time", "(at) is required"
     elsif @start_time.present? && Chronic.parse(@start_time).nil?
@@ -47,8 +45,6 @@ class PlayTime < ActiveRecord::Base
   end
 
   def check_duration_text
-    logger.info @start_time.to_yaml
-    logger.info @duration_text + " from " + @start_time
     if !@duration_text.present?
       errors.add "Duration", "(for) is required"
     elsif @duration_text.present? && Chronic.parse(@duration_text + " from " + @start_time).nil?
@@ -64,7 +60,7 @@ class PlayTime < ActiveRecord::Base
     return false
   end
 
-  private
+private
 
   def set_duration
     self.duration = (self.end - self.start) / 60 

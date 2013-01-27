@@ -52,4 +52,5 @@ class ConsolesController < ApplicationController
     current_user.consoles.delete(Console.find(params[:id]))
     redirect_to console_url
   end
+
 end

@@ -7,8 +7,6 @@ GameStatus::Application.routes.draw do
   resources :consoles
   resources :play_times
 
-  get 'text/:id' => 'notifications#send_text_message', :as => 'text'
-
   get 'users/:id' => 'users#show', :as => 'user'
   get 'users' => 'users#index', :as => 'users'
   
