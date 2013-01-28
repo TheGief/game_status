@@ -39,19 +39,19 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    redirect_to games_url
+    redirect_to games_path
   end
 
   def add
     unless current_user.games.exists?(params[:id])
       current_user.games << Game.find(params[:id])
     end
-    redirect_to game_url
+    redirect_to request.referer || games_path
   end
 
   def remove
     current_user.games.delete(Game.find(params[:id]))
-    redirect_to game_url
+    redirect_to request.referer || games_path
   end
 
 end

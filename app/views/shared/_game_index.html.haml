@@ -1,12 +1,12 @@
 .row
   - @games.each do |game|
-    .span4.game
-      .game-img
+    .span4.item
+      .item-img
         = cover_img(game)
-      .game-info
+      .item-info
         %h3= link_to game.title, game
         .btn-group
-        -if @owned_games.include?(game)
-          = link_to 'Remove', remove_game_path(game), class: 'btn btn-danger'
-        - else
-          = link_to 'Add', add_game_path(game), class: 'btn btn-success'
+          -if @owned_games.include?(game)
+            = link_to 'Remove', remove_game_path(game), class: 'btn btn-danger'
+          - else
+            = link_to 'Add', add_game_path(game), class: 'btn btn-success'
