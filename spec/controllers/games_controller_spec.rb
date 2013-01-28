@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe GamesController do
   let!(:game) { create(:borderlands) }
+  login_user
 
   describe "GET index" do
     before { get :index }
