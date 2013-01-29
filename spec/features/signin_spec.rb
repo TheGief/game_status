@@ -4,7 +4,7 @@ feature "Sign in" do
   let!(:user) { create(:han_solo) }
 
   scenario "Signing in with correct credentials" do
-    visit new_user_session_path
+    visit login_path
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button 'Sign in'
@@ -13,7 +13,7 @@ feature "Sign in" do
   end
 
   scenario "Signing in with incorrect credentials" do
-    visit new_user_session_path
+    visit login_path
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: "wrong_password"
     click_button 'Sign in'
