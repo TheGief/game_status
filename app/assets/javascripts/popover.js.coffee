@@ -1,0 +1,4 @@
+$ ->
+  $(".pop").popover({
+    trigger: focus
+  })

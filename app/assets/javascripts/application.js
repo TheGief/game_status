@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-collapse
+//= require bootstrap-tooltip
+//= require bootstrap-popover
 //= require_tree .
 //
 // Loads all Bootstrap javascripts (add = to enable)
