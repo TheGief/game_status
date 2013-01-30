@@ -1,11 +1,11 @@
-%h2.page-header Forgot your password?
+%h2.page-header Password reset instructions
 .row
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal'}) do |f|
     = devise_error_messages!
     .control-group
       = f.label :email, class: 'control-label'
       .controls
-        = f.email_field :email, :autofocus => true
+        = f.email_field :email, autofocus: true
     .control-group
       .controls
-        = f.submit "Send password reset", class: 'btn btn-primary'
+        = f.submit 'Send', class: 'btn btn-primary'
