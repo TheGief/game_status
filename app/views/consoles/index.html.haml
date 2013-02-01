@@ -1,10 +1,18 @@
 .page-header
   %h1 What consoles do you own?
   %h4= link_to 'Create Console', new_console_path
-.row
-  - @consoles.each do |console|
-    .span4.console
-      .console-img
-        = cover_img(console)
-      .console-info
-        %h3= link_to console.title, console
+.row-fluid
+  %ul.thumbnails
+    - @consoles.each do |console|
+      %li.span3
+        .thumbnail
+          = cover_img(console)
+          .caption
+            %h3
+              = link_to console.title, console
+              %span.btn-group.pull-right
+                -if @owned_consoles.include?(console)
+                  = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger', remote: true, data: { console_id: console.id }
+                - else
+                  = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success', remote: true, data: { console_id: console.id }
+            %p Should there be a caption?

@@ -2,6 +2,7 @@ class ConsolesController < ApplicationController
 
   def index
     @consoles = Console.all
+    @owned_consoles = current_user.consoles
   end
 
   def show
@@ -41,16 +42,20 @@ class ConsolesController < ApplicationController
     redirect_to consoles_url
   end
 
-  def add
-    unless current_user.consoles.exists?(params[:id])
-      current_user.consoles << Console.find(params[:id])
-    end
-    redirect_to console_url
-  end
+  def add_remove
+    @console = Console.find(params[:id])
 
-  def remove
-    current_user.consoles.delete(Console.find(params[:id]))
-    redirect_to console_url
+    # add or remove the console from user's collection
+    if current_user.consoles.exists?(@console)
+      current_user.consoles.delete(@console)
+    else
+      current_user.consoles << @console
+    end
+
+    respond_to do |format|
+      format.js
+    end
+    
   end
 
 end

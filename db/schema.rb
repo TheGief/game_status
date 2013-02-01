@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125024901) do
+ActiveRecord::Schema.define(:version => 20130201152913) do
 
   create_table "consoles", :force => true do |t|
     t.string   "title"
@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(:version => 20130125024901) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "consoles_users", :id => false, :force => true do |t|
-    t.integer "console_id"
-    t.integer "user_id"
+  create_table "consoles_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "console_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "consoles_users", ["user_id", "console_id"], :name => "index_consoles_users_on_user_id_and_console_id"
@@ -44,9 +46,11 @@ ActiveRecord::Schema.define(:version => 20130125024901) do
 
   add_index "games", ["title"], :name => "index_games_on_title"
 
-  create_table "games_users", :id => false, :force => true do |t|
-    t.integer "game_id"
-    t.integer "user_id"
+  create_table "games_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "games_users", ["user_id", "game_id"], :name => "index_games_users_on_user_id_and_game_id"
