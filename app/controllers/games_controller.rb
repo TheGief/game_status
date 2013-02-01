@@ -7,9 +7,11 @@ class GamesController < ApplicationController
 
   def show
     id = params[:id]
-    @own_game = current_user.games.exists?(id)
     @game = Game.find(id)
-    @play_times = current_user.friends.find(:all, :joins => {:play_times => [:game, :user]}, :conditions => ["play_times.end > now() AND play_times.game_id = ?", id], :order => "start desc")
+    @owned_games = current_user.games
+    @play_times = current_user.friends.find(:all, :joins => {:play_times => [:game, :user]}, 
+                                                  :conditions => ["play_times.end > now() AND play_times.game_id = ?", id], 
+                                                  :order => "start desc")
   end
 
   def new
@@ -44,16 +46,20 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
-  def add
-    unless current_user.games.exists?(params[:id])
-      current_user.games << Game.find(params[:id])
-    end
-    redirect_to request.referer || games_path
-  end
+  def add_remove
+    @game = Game.find(params[:id])
 
-  def remove
-    current_user.games.delete(Game.find(params[:id]))
-    redirect_to request.referer || games_path
+    # add or remove the game from user's collection
+    if current_user.games.exists?(@game)
+      current_user.games.delete(@game)
+    else
+      current_user.games << @game
+    end
+
+    respond_to do |format|
+      format.js
+    end
+    
   end
 
 end

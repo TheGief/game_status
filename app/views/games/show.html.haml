@@ -1,15 +1,19 @@
 .row
   .span3.item
+  
     %h1.page-header= @game.title
+  
     %p= cover_img(@game, edit: true)
+  
     .btn-group
-      -if @own_game
-        = link_to 'Remove', remove_game_path(@game), class: 'btn btn-danger'
+      -if @owned_games.include?(@game)
+        = link_to 'Remove', add_remove_game_path(@game), id: "game_#{@game.id}", class: 'btn btn-danger', remote: true, data: { game_id: => @game.id}
       - else
-        = link_to 'Add', add_game_path(@game), class: 'btn btn-success'
+        = link_to 'Add', add_remove_game_path(@game), id: "game_#{@game.id}", class: 'btn btn-success', remote: true, data: { game_id: @game.id}
     .btn-group
       = link_to 'Edit', edit_game_path(@game), class: 'btn btn-default'
       = link_to 'Delete', @game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
+  
   .span9.info
     %h2 Friends playing this game:
     .well

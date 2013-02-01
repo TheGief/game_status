@@ -17,8 +17,7 @@ GameStatus::Application.routes.draw do
   get 'users/:id' => 'users#show', :as => 'user'
   get 'users' => 'users#index', :as => 'users'
   
-  get 'games/:id/add' => 'games#add', :as => 'add_game'
-  get 'games/:id/remove' => 'games#remove', :as => 'remove_game'
+  get 'games/:id/add_remove' => 'games#add_remove', :as => 'add_remove_game'
   
   get 'consoles/:id/add' => 'consoles#add', :as => 'add_console'
   get 'consoles/:id/remove' => 'consoles#remove', :as => 'remove_console'
