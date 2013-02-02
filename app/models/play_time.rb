@@ -1,6 +1,6 @@
 class PlayTime < ActiveRecord::Base
 
-  attr_accessible :start_time, :duration_text, :game_id, :console_id, :user_id
+  attr_accessible :start_time, :duration_text, :game_id, :console_id, :user_id, :notify
   attr_writer :start_time
   attr_writer :duration_text
 

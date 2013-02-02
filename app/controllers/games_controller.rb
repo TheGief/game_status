@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     id = params[:id]
     @game = Game.find(id)
     @owned_games = current_user.games
-    @play_times = current_user.friends.find(:all, :joins => {:play_times => [:game, :user]}, 
+    @friends_playing = current_user.friends.find(:all, :joins => {:play_times => [:game, :user]}, 
                                                   :conditions => ["play_times.end > now() AND play_times.game_id = ?", id], 
                                                   :order => "start desc")
   end

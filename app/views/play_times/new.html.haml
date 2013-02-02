@@ -3,8 +3,14 @@
   .span6
     %h4 New Play Time
     = form_for @play_time, html: { class: 'form-horizontal' } do |f|
+      
       .control-group
-        = f.label :start_time, "At", class: 'control-label'
+        = f.label :notify, "Tell friends", class: 'control-label'
+        .controls
+          = f.check_box :notify
+
+      .control-group
+        = f.label :start_time, "at", class: 'control-label'
         .controls
           = f.text_field :start_time, placeholder: '8 pm', class: 'span2 pop', title: 'Start Time', data: { :content => '2pm, Tomorrow 5:30pm, Sunday 11am, Tue 10 to 8, January 5 at 7pm' }
 
