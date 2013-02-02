@@ -23,7 +23,7 @@
   .control-group
     = f.label :time_zone, "Time Zone", class: 'control-label'
     .controls
-      = f.time_zone_select :time_zone, nil, {}, {:default => "Pacific Time (US & Canada)", :class => 'span3'}
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {class: 'span3'}
   
   .control-group
     .controls

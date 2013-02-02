@@ -8,7 +8,7 @@ class PlayTime < ActiveRecord::Base
   belongs_to :game
   belongs_to :console
 
-  scope :future, lambda { where("play_times.end > ?", Time.current) }
+  scope :future, lambda { where("play_times.end > ?", Time.zone.now) }
 
   validates :game_id, :console_id, :presence => true
   validate :check_start_time, :check_duration_text
@@ -56,7 +56,7 @@ class PlayTime < ActiveRecord::Base
 
 
   def in_progress?
-    return true if self.start < Time.current && self.end > Time.current
+    return true if self.start < Time.zone.now && self.end > Time.zone.now
     return false
   end
 

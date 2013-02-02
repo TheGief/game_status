@@ -42,5 +42,6 @@ class User < ActiveRecord::Base
   validates :phone, :presence => true, length: { minimum: 10, :message => "is full 10 digit cell number" }
   validates :password, presence: true, length: { minimum: 6 }
   validates :time_zone, presence: true
-
+  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
+  
 end

@@ -1,52 +1,9 @@
-// Games
-body.games
-
-  $thumb-h: 130px
-  $thumb-w: $thumb-h * .7
-
-  // Index
-  .index
-    .page-header
-      @extend .clearfix
-      h1
-        float: left
-        width: auto
-      h4
-        float: right
-        width: auto
-        margin-top: 30px
-
-    .item
-      margin-bottom: 20px
-      padding-bottom: 10px
-      border-bottom: 1px solid #eee
-      height: $thumb-h + 10
-
-      .item-img
-        height: $thumb-h + 10
-        width: $thumb-w
-        float: left
-        img
-          height: $thumb-h
-          width: $thumb-w
-
-      .item-info
-        margin-left: $thumb-w
-        padding-left: 15px
-        @media (min-width: 768px) and (max-width: 979px)
-          h3
-            font-size: 15px
-
-  // Show
-  .show
-    text-align: center
-    .info
-      text-align: left
-      h2
-        margin-top: 100px
-      h3
-        margin-top: 20px
-
 // Consoles
 body.consoles
-  @extend body.games
+  
+
+// Games
+body.games
+  @extend body.consoles
+
+  
