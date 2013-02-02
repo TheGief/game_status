@@ -23,6 +23,7 @@ group :development, :test do
   gem 'mysql2'
   gem 'foreman'
   gem 'rspec-rails', '~> 2.0'
+  gem 'better_errors'
 end
 
 group :test do
