@@ -6,9 +6,9 @@
     %p= cover_img(@console, edit: true)
     .btn-group
       -if @own_console
-        = link_to 'Remove', remove_console_path(@console), class: 'btn btn-danger'
+        = link_to 'Remove', add_remove_console_path(@console), id: "console_#{@console.id}", class: 'btn btn-danger', remote: true
       - else
-        = link_to 'Add', add_console_path(@console), class: 'btn btn-success'
+        = link_to 'Add', add_remove_console_path(@console), id: "console_#{@console.id}", class: 'btn btn-success', remote: true
     .btn-group
       = link_to 'Edit', edit_console_path(@console), class: 'btn btn-default'
       = link_to 'Delete', @console, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'

@@ -1,15 +1,17 @@
 .page-header
   %h1 What games do you own?
   %h4= link_to 'Create Game', new_game_path
-.row
-  - @games.each do |game|
-    .span4.item
-      .item-img
-        = cover_img(game)
-      .item-info
-        %h3= link_to game.title, game
-        .btn-group
-          -if @owned_games.include?(game)
-            = link_to 'Remove', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-danger', remote: true, data: { game_id: game.id }
-          - else
-            = link_to 'Add', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-success', remote: true, data: { game_id: game.id }
+.row-fluid
+  %ul.thumbnails
+    - @games.each do |game|
+      %li.span3
+        .thumbnail
+          = cover_img(game)
+          .caption
+            %h3= link_to game.title, game
+            %span.btn-group.pull-right
+              -if @owned_games.include?(game)
+                = link_to 'Remove', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-danger', remote: true
+              - else
+                = link_to 'Add', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-success', remote: true
+            %p Should there be a caption?

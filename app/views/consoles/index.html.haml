@@ -8,11 +8,10 @@
         .thumbnail
           = cover_img(console)
           .caption
-            %h3
-              = link_to console.title, console
-              %span.btn-group.pull-right
-                -if @owned_consoles.include?(console)
-                  = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger', remote: true, data: { console_id: console.id }
-                - else
-                  = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success', remote: true, data: { console_id: console.id }
+            %h3= link_to console.title, console
+            %span.btn-group.pull-right
+              -if @owned_consoles.include?(console)
+                = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger', remote: true
+              - else
+                = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success', remote: true
             %p Should there be a caption?
