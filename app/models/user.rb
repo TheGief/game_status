@@ -40,8 +40,12 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :username, :presence => true, format: { with: LETTERS_ONLY, :message => "is letters only" }, uniqueness: { case_sensitive: false }
   validates :phone, :presence => true, length: { minimum: 10, :message => "is full 10 digit cell number" }
-  validates :password, presence: true, length: { minimum: 6 }
   validates :time_zone, presence: true
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
-  
+  validate :password_length_requirement
+
+  def password_length_requirement
+    return unless password.present? and not password.length >= 8
+    errors.add :password, "must be at least 8 characters long"
+  end
 end

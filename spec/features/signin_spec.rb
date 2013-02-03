@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Sign in" do
-  let!(:user) { create(:han_solo) }
+  let!(:user) { create(:han_solo, confirmed_at: '2013-01-01') }
 
   scenario "Signing in with correct credentials" do
     visit login_path
