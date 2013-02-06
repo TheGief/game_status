@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :time_zone
+  attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :time_zone, :notify_email, :notify_sms
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :token_authenticatable,
     :confirmable, :lockable # :timeoutable, :omniauthable

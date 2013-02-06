@@ -24,6 +24,16 @@
     = f.label :time_zone, "Time Zone", class: 'control-label'
     .controls
       = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {class: 'span3'}
+
+  .control-group
+    = f.label "Send Notifications by", class: 'control-label'
+    .controls
+      = f.label :notify_email, class: 'checkbox' do
+        = f.check_box :notify_email
+        E-Mail
+      = f.label :notify_sms, class: 'checkbox' do
+        = f.check_box :notify_sms
+        SMS
   
   .control-group
     .controls
