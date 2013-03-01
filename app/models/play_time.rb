@@ -7,8 +7,10 @@ class PlayTime < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
   belongs_to :console
+  has_many :attendees
 
   scope :future, lambda { where("play_times.end > ?", Time.zone.now) }
+  scope :past, lambda { where("play_times.end < ?", Time.zone.now) }
 
   validates :game_id, :console_id, :presence => true
   validate :check_start_time, :check_duration_text
@@ -58,6 +60,11 @@ class PlayTime < ActiveRecord::Base
   def in_progress?
     return true if self.start < Time.zone.now && self.end > Time.zone.now
     return false
+  end
+
+  def attending?(user_id)
+    attendee = self.attendees.find_by_user_id(user_id)
+    return attendee.attending if attendee
   end
 
 private

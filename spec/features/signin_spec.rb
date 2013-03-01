@@ -9,7 +9,7 @@ feature "Sign in" do
     fill_in 'user_password', with: user.password
     click_button 'Sign in'
     page.should have_content('Logout')
-    current_path.should eq(friends_path)
+    current_path.should eq(play_path)
   end
 
   scenario "Signing in with incorrect credentials" do

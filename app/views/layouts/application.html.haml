@@ -14,7 +14,7 @@
   %body{class: controller.controller_name}
     = render 'layouts/header'
     .container{class: controller.action_name}
-      = render 'layouts/flashes' if flash.any?
+      .flash
+        = render 'layouts/flashes' if flash.any?
       = yield 
-
     = render 'layouts/footer'

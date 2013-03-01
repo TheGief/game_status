@@ -24,11 +24,15 @@ group :development, :test do
   gem 'foreman'
   gem 'rspec-rails', '~> 2.0'
   gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'terminal-notifier-guard' # os x
   gem 'shoulda', '~> 3.1'
   gem 'guard-rspec'
   gem 'guard-spork'

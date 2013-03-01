@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :consoles, through: :consoles_user
 
   has_many :play_times
+  has_many :attendees
+
   has_many :friendships
   has_many :friends, 
            :through => :friendships,
@@ -48,4 +50,18 @@ class User < ActiveRecord::Base
     return unless password.present? and not password.length >= 8
     errors.add :password, "must be at least 8 characters long"
   end
+
+  def gravatar_url(options = {})
+    size = options[:size] || 42
+    rating = options[:rating] || 'g'
+    blank_avatar = "mm"
+    
+    # See https://en.gravatar.com/site/implement/images/ for additional options
+    "https://www.gravatar.com/avatar/#{email_hash}?s=#{size}&r=#{rating}&d=#{blank_avatar}"
+  end
+
+  def email_hash
+    Digest::MD5.hexdigest(email)
+  end
+  
 end

@@ -15,18 +15,19 @@ GameStatus::Application.routes.draw do
   resources :play_times
 
   get 'users/:id' => 'users#show', :as => 'user'
-  get 'users' => 'users#index', :as => 'users'
   
   get 'games/:id/add_remove' => 'games#add_remove', :as => 'add_remove_game'
   
   get 'consoles/:id/add_remove' => 'consoles#add_remove', :as => 'add_remove_console'
   
-  get 'friends' => 'friendships#index', :as => 'friends'
+  get 'friends' => 'users#index', :as => 'friends'
   get 'friendship/req/:id' => 'friendships#req', :as => 'req_friendship'
   get 'friendship/accept/:id' => 'friendships#accept', :as => 'accept_friendship'
   get 'friendship/reject/:id' => 'friendships#reject', :as => 'reject_friendship'
 
   get 'play' => 'play_times#new', :as => 'play'
+  get 'play/:id/attend' => 'play_times#attend', :as => 'attend'
+  get 'play/:id/unattend' => 'play_times#unattend', :as => 'unattend'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

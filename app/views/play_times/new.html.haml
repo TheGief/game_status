@@ -1,4 +1,5 @@
 = render "layouts/validations", object: @play_time
+%h1 When are you playing next?
 .row
   .span6
     %h4 New Play Time
@@ -32,16 +33,25 @@
       .control-group
         .controls
           = f.submit 'Create', class: 'btn btn-success', disable_with: "Creating..."
+ 
   .span6
-    %h4 Existing Play Times
+    %h4 My Play Times
     - @play_times.each do |play_time|
-      %blockquote
-        %p
-          = play_time.start.strftime "%a %l:%M%p"
-          = play_time.game.title
-          %small
-            - if play_time.in_progress?
-              In Progress
+      .well.well-small.play_time
+        %blockquote
+          %p 
+            #{play_time.start.strftime "%a %l:%M%p"} #{link_to play_time.game.title, play_time.game} on #{play_time.console.title}
+            - if play_time.attending?(current_user.id)
+              = link_to "Remove", unattend_path(play_time), class: 'pull-right remove'
             - else
-              in
-              = distance_of_time_in_words_to_now play_time.start
+              = link_to "Add", attend_path(play_time), class: 'pull-right add'  
+            %small
+              - if play_time.in_progress?
+                In Progress!
+              - else
+                in #{distance_of_time_in_words_to_now play_time.start}
+              &mdash;
+              - play_time.attendees.where(attending: true).order(:attending).each do |attendee|
+                = image_tag attendee.user.gravatar_url({size: 20}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is in!', class: 'attendee in'
+              - play_time.attendees.where(attending: false).each do |attendee|
+                = image_tag attendee.user.gravatar_url({size: 20}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is out...', class: 'attendee out'

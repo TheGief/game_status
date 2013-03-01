@@ -5,7 +5,9 @@ html
 
 body
   @media  (min-width: 980px)
-    padding-top: 70px
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a
+  color: white
 
 section
   overflow: auto
@@ -22,10 +24,26 @@ textarea
 .stack
   margin-bottom: 0
 
+.page-header h4
+  @extend .pull-right
+
 // COMPONENTS
+
+.alert
+  margin: 0
 
 .alert-notice
   @extend .alert-info
+
+#error_explanation
+  @extend .alert
+  @extend .alert-error
+
+  h2
+    margin: 0
+
+.flash
+  min-height: 38px
 
 
 // FOOTER

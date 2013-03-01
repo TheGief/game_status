@@ -15,6 +15,7 @@
 //= require bootstrap-collapse
 //= require bootstrap-tooltip
 //= require bootstrap-popover
+//= require bootstrap-dropdown
 //= require_tree .
 //
 // Loads all Bootstrap javascripts (add = to enable)

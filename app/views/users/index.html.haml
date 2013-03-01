@@ -2,12 +2,14 @@
 %table.table.table-striped.table-bordered.table-hover
   %thead
     %tr
-      %th Username
-      %th Games
+      %th User
       %th Status
   %tbody
     - @users.each do |user|
-      %tr
-        %td= link_to user.username, user_path(user)
-        %td= "Owns #{count(user.games)} and #{count(user.consoles)}."
-        %td= link_to "Add Friend", req_friendship_path(user)
+      - if user.id != current_user.id
+        %tr
+          %td= link_to user.username, user_path(user)
+          - if user.status.blank?
+            %td= link_to "Add Friend", req_friendship_path(user)
+          - else
+            %td= user.status
