@@ -4,6 +4,7 @@ ruby '2.0.0'
 
 gem 'rails', '3.2.11'
 gem 'sass-rails', '~> 3.2'
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'devise'
 gem 'thin'
@@ -15,7 +16,6 @@ gem 'jquery-turbolinks'
 
 group :assets do
   gem 'therubyracer', :platforms => :ruby
-  gem 'haml-rails'
   gem 'compass-rails'
   gem 'bootstrap-sass', '~> 2.3.0.1'
   gem 'coffee-rails', '~> 3.2.2'
