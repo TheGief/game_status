@@ -4,14 +4,13 @@
 .row-fluid
   %ul.thumbnails
     - @games.each do |game|
-      %li.span3
-        .thumbnail
-          = cover_img(game)
+      %li.span2
+        .thumbnail.center
+          = link_to image_tag(img_url(game.image_url, {h: 200, w: 150, t: :square, a: :top}), class: 'cover_img'), game_path(game)
           .caption
-            %h3= link_to game.title, game
-            %span.btn-group.pull-right
+            %h5.title= link_to game.title, game
+            .btn-group
               -if @owned_games.include?(game)
                 = link_to 'Remove', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-danger', remote: true
               - else
                 = link_to 'Add', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-success', remote: true
-            %p Should there be a caption?

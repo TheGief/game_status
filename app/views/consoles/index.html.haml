@@ -5,13 +5,12 @@
   %ul.thumbnails
     - @consoles.each do |console|
       %li.span3
-        .thumbnail
+        .thumbnail.center
           = cover_img(console)
           .caption
-            %h3= link_to console.title, console
-            %span.btn-group.pull-right
+            %h4.title= link_to console.title, console
+            .btn-group
               -if @owned_consoles.include?(console)
                 = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger', remote: true
               - else
                 = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success', remote: true
-            %p Should there be a caption?

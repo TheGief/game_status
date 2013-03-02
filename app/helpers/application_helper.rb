@@ -5,4 +5,9 @@ module ApplicationHelper
     link_to image_tag(item.image_url, class: 'cover_img'), path
   end
 
+  def img_url(*args)
+    options = args.extract_options!
+    'http://images.weserv.nl?' + 'url=' + URI.escape(args[0]) + '&' + options.to_query
+  end
+
 end

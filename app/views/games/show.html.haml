@@ -1,9 +1,10 @@
 .row
+  
+  
+
   .span3.item
-  
-    %h1.page-header= @game.title
-  
-    %p= cover_img(@game, edit: true)
+    %h2= @game.title
+    %p= image_tag(img_url(@game.image_url, {w: 270, t: :fit}), class: 'cover_img')
   
     .btn-group
       -if @owned_games.include?(@game)
@@ -15,18 +16,6 @@
       = link_to 'Delete', @game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
   
   .span9.info
-    %h2 Friends playing this game:
+    %h2 Friends with this game:
     .well
-      - @friends_playing.each_with_index do |play_time, i|
-        %blockquote
-          %p
-            \#
-            = play_time.play_times[i].id
-            \:
-            = play_time.username
-            @
-            = play_time.play_times[i].start.strftime "%a %l:%M%p"
-            %small
-              in
-              = distance_of_time_in_words_to_now play_time.play_times[i].start
-            
+      %p Coming Soon...

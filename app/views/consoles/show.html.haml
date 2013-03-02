@@ -2,7 +2,7 @@
 
 .row
   .span3.item
-    %h1.page-header= @console.title
+    %h2= @console.title
     %p= cover_img(@console, edit: true)
     .btn-group
       -if @own_console
@@ -14,5 +14,6 @@
       = link_to 'Delete', @console, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
 
   .span9.info
-    %h2 Friends playing this console:
+    %h2 Friends with this console:
     .well
+      %p Coming soon...
