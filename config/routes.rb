@@ -29,4 +29,5 @@ GameStatus::Application.routes.draw do
   get 'play/:id/attend' => 'play_times#attend', :as => 'attend'
   get 'play/:id/unattend' => 'play_times#unattend', :as => 'unattend'
 
+  post 'sms' => 'sms#listener'
 end

@@ -1,4 +1,5 @@
 class PlayTimeObserver < ActiveRecord::Observer
+  include Twilio::Sms
 
   def after_save(play_time)
 
