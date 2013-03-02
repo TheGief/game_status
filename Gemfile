@@ -10,6 +10,8 @@ gem 'thin'
 gem 'pg'
 gem 'twilio-ruby'
 gem 'chronic'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 group :assets do
   gem 'therubyracer', :platforms => :ruby
