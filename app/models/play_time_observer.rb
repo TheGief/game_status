@@ -11,29 +11,23 @@ class PlayTimeObserver < ActiveRecord::Observer
       :conditions => ["games.id = ? AND consoles.id = ?", play_time.game.id, play_time.console.id]
     )
 
-    # if creator choose to notify friend and if he/she has friends with the game and console
     if play_time.notify && friends.any?
-      friends.each do |friend|
-        # How to do time zone for each friend?
-        # Time.use_zone friend.time_zone
 
-        # notify by email
+      message_body = "#{sender.username} is playing #{play_time.game.title} @ #{start_time}"
+      debug_msg = "Not sending E-Mail to #{friend.username}, he has it disabled"
+
+      friends.each do |friend| # How to do time zone for each friend? : Time.use_zone friend.time_zone
+
         if friend.notify_email
-          NotifyFriends.play_time_created(play_time, friend).deliver
+          NotifyFriends.play_time_created(play_time, friend, message_body).deliver
         else
-          play_time.logger.debug "Not sending E-Mail to #{friend.username}, he has it disabled"
+          play_time.logger.debug debug_msg
         end
 
-        # notify by sms
         if friend.notify_sms
-          twilio_client = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
-          twilio_client.account.sms.messages.create(
-            :from => "7076347022",
-            :to => friend.phone,
-            :body => "#{sender.username} is playing #{play_time.game.title} @ #{start_time}"
-          )
+          send_sms friend.phone message_body
         else
-          play_time.logger.debug "Not sending SMS to #{friend.username}, he has it disabled"
+          play_time.logger.debug debug_msg
         end
       end
     else
