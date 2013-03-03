@@ -12,11 +12,10 @@ class PlayTimeObserver < ActiveRecord::Observer
     )
 
     if play_time.notify && friends.any?
-
-      message_body = "#{sender.username} is playing #{play_time.game.title} @ #{start_time}"
-      debug_msg = "Not sending E-Mail to #{friend.username}, he has it disabled"
-
       friends.each do |friend| # How to do time zone for each friend? : Time.use_zone friend.time_zone
+
+        message_body = "#{sender.username} is playing #{play_time.game.title} @ #{play_time.start_time}"
+        debug_msg = "Not sending E-Mail to #{friend.username}, he has it disabled"
 
         if friend.notify_email
           NotifyFriends.play_time_created(play_time, friend, message_body).deliver
@@ -30,9 +29,10 @@ class PlayTimeObserver < ActiveRecord::Observer
           play_time.logger.debug debug_msg
         end
       end
+
     else
       play_time.logger.debug "Not sending notifications due to zero friends with game and console or, 'notify friends' unchecked"
     end
-  end
 
+  end
 end
