@@ -52,9 +52,7 @@ class ConsolesController < ApplicationController
       current_user.consoles << @console
     end
 
-    respond_to do |format|
-      format.js
-    end
+    redirect_to consoles_url
     
   end
 
