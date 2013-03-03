@@ -56,7 +56,9 @@ class GamesController < ApplicationController
       current_user.games << @game
     end
 
-    redirect_to games_url
+    respond_to do |format|
+      format.js
+    end
     
   end
 
