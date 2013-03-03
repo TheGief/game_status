@@ -25,7 +25,7 @@ class PlayTimeObserver < ActiveRecord::Observer
         end
 
         if friend.notify_sms
-          send_sms friend.phone message_body
+          send_sms friend.phone, message_body
         else
           play_time.logger.debug debug_msg
         end
