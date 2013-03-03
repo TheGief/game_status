@@ -1,4 +1,4 @@
 -if @owned_consoles.include?(console)
-  = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger add_remove', remote: true, :'data-no-turbolink' => true
+  = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger add_remove', remote: true
 - else
-  = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success add_remove', remote: true, :'data-no-turbolink' => true
+  = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success add_remove', remote: true
