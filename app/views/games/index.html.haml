@@ -10,7 +10,5 @@
           .caption
             %h5.title= link_to game.title, game
             .btn-group
-              -if @owned_games.include?(game)
-                = link_to 'Remove', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-danger', remote: true
-              - else
-                = link_to 'Add', add_remove_game_path(game), id: "game_#{game.id}", class: 'btn btn-success', remote: true
+              = render partial: 'add_remove_btn', :locals => { :game => game }
+              

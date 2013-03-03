@@ -52,8 +52,10 @@ class ConsolesController < ApplicationController
       current_user.consoles << @console
     end
 
-    respond_to do |format|
-      format.js
+    if request.xhr?
+      render :nothing => true
+    else
+      redirect_to consoles_url
     end
     
   end

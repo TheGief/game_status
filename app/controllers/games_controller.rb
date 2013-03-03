@@ -56,8 +56,10 @@ class GamesController < ApplicationController
       current_user.games << @game
     end
 
-    respond_to do |format|
-      format.js
+    if request.xhr?
+      render :nothing => true
+    else
+      redirect_to games_url
     end
     
   end

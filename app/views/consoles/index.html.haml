@@ -10,7 +10,4 @@
           .caption
             %h4.title= link_to console.title, console
             .btn-group
-              -if @owned_consoles.include?(console)
-                = link_to 'Remove', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-danger', remote: true
-              - else
-                = link_to 'Add', add_remove_console_path(console), id: "console_#{console.id}", class: 'btn btn-success', remote: true
+              = render partial: 'add_remove_btn', :locals => { :console => console }

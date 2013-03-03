@@ -1,5 +1,5 @@
-$ ->
-  el = $(this.activeElement)
+$(document).on 'click', 'a.btn.add_remove', ->
+  el = $(this)
 
   el.toggleClass('btn-success btn-danger')
 
