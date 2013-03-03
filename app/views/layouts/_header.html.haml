@@ -15,7 +15,9 @@
             %li= link_to 'Consoles', consoles_path
             %li.divider-vertical
             %li.dropdown
-              = link_to current_user.username, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}
+              = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+                = current_user.username
+                %b.caret
               %ul.dropdown-menu
                 %li= link_to 'Account', edit_user_registration_path
                 %li= link_to 'Logout', logout_path, method: :delete
