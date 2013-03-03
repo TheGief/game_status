@@ -3,11 +3,13 @@
   .control-group
     = f.label :title, class: 'control-label'
     .controls
-      = f.text_field :title
+      = f.text_field :title, class: 'span3'
   .control-group
     = f.label :image_url, class: 'control-label'
     .controls
-      = f.text_field :image_url
+      .input-prepend
+        %span.add-on http://
+        = f.text_field :image_url, class: 'span3'
   .control-group
     .controls
       = f.submit 'Save', class: 'btn btn-success'
