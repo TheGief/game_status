@@ -3,35 +3,25 @@ class PlayTimeObserver < ActiveRecord::Observer
 
   def after_save(play_time)
 
-    # get list friends with both console and game
-    sender = play_time.user
-    friends = sender.friends.find(
-      :all,
-      :joins => [:games, :consoles],
-      :conditions => ["games.id = ? AND consoles.id = ?", play_time.game.id, play_time.console.id]
-    )
+    sender  = play_time.user
+    game    = play_time.game
+    console = play_time.console
+    friends = sender.friends.with_game(game.id).with_console(console.id)
+
+    message = "#{sender.username} is playing #{game.title} @ #{play_time.start_time}"
 
     if play_time.notify && friends.any?
       friends.each do |friend| # How to do time zone for each friend? : Time.use_zone friend.time_zone
 
-        message_body = "#{sender.username} is playing #{play_time.game.title} @ #{play_time.start_time}"
-        debug_msg = "Not sending E-Mail to #{friend.username}, he has it disabled"
-
         if friend.notify_email
-          NotifyFriends.play_time_created(play_time, friend, message_body).deliver
-        else
-          play_time.logger.debug debug_msg
+          NotifyFriends.play_time_created(play_time, friend, message).deliver
         end
 
         if friend.notify_sms
-          send_sms friend.phone, message_body
-        else
-          play_time.logger.debug debug_msg
+          send_sms friend.phone, message
         end
-      end
 
-    else
-      play_time.logger.debug "Not sending notifications due to zero friends with game and console or, 'notify friends' unchecked"
+      end
     end
 
   end

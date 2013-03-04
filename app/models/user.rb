@@ -19,21 +19,21 @@ class User < ActiveRecord::Base
   has_many :attendees
 
   has_many :friendships
-  has_many :friends, 
+  has_many :friends,
            :through => :friendships,
-           :conditions => "status = 'accepted'", 
+           :conditions => "status = 'accepted'",
            :order => :username
 
-  has_many :requested_friends, 
-           :through => :friendships, 
+  has_many :requested_friends,
+           :through => :friendships,
            :source => :friend,
-           :conditions => "status = 'requested'", 
+           :conditions => "status = 'requested'",
            :order => :created_at
 
-  has_many :pending_friends, 
-           :through => :friendships, 
+  has_many :pending_friends,
+           :through => :friendships,
            :source => :friend,
-           :conditions => "status = 'pending'", 
+           :conditions => "status = 'pending'",
            :order => :created_at
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -46,6 +46,14 @@ class User < ActiveRecord::Base
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
   validate :password_length_requirement
 
+  scope :with_game, -> id do
+    joins(:games).where 'games.id = ?', id
+  end
+
+  scope :with_console, -> id do
+    joins(:consoles).where 'consoles.id = ?', id
+  end
+
   def password_length_requirement
     return unless password.present? and not password.length >= 8
     errors.add :password, "must be at least 8 characters long"
@@ -55,7 +63,7 @@ class User < ActiveRecord::Base
     size = options[:size] || 42
     rating = options[:rating] || 'g'
     blank_avatar = "mm"
-    
+
     # See https://en.gravatar.com/site/implement/images/ for additional options
     "https://www.gravatar.com/avatar/#{email_hash}?s=#{size}&r=#{rating}&d=#{blank_avatar}"
   end
@@ -63,5 +71,5 @@ class User < ActiveRecord::Base
   def email_hash
     Digest::MD5.hexdigest(email)
   end
-  
+
 end
