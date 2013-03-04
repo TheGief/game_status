@@ -39,12 +39,16 @@
     - @play_times.each do |play_time|
       .well.well-small.play_time
         %blockquote
+          .attendance.pull-right
+            - if play_time.attending?(current_user.id)
+              = link_to "Remove", unattend_path(play_time), class: 'remove'
+            - else
+              = link_to "Add", attend_path(play_time), class: 'add'
+              - if not play_time.responded?
+                |
+                = link_to "Pass", unattend_path(play_time), class: 'remove'
           %p 
             #{play_time.start.strftime "%a %l:%M%p"} #{link_to play_time.game.title, play_time.game} on #{play_time.console.title}
-            - if play_time.attending?(current_user.id)
-              = link_to "Remove", unattend_path(play_time), class: 'pull-right remove'
-            - else
-              = link_to "Add", attend_path(play_time), class: 'pull-right add'  
             %small
               - if play_time.in_progress?
                 In Progress!
