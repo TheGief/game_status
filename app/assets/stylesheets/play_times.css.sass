@@ -1,16 +1,35 @@
-.play_times
-  blockquote
-    margin-bottom: 0
+.form-horizontal .control-label
+  width: 100px
 
-  img.creator
-    margin-left: 5px
+.form-horizontal .controls
+  margin-left: 120px
+
+.play_times
+  
+  .content
+    padding: 0 0 0 15px
+    border-left: 5px solid #888
+
+  .info
+    margin: 0
+    font-size: 19px
+    
+  .meta
+    color: #999
+    line-height: 30px
+
+    .time_in_words:before,
+    .time_in_words:after
+      content: '\2014 \00A0'
 
   img.attendee.in
-    border-bottom: 1px solid green
+    border-bottom: 2px solid green
     padding-bottom: 2px
 
   img.attendee.out
     opacity: .5
-    border-bottom: 1px solid red
-    padding-bottom: 2px
+    border-bottom: 2px solid red
+    padding-bottom: 3px
 
+  .created_by
+    margin-top: 15px

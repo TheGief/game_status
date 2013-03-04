@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def index
-    @games = Game.all
+    @games = Game.find(:all, order: :title)
     @owned_games = current_user.games
   end
 

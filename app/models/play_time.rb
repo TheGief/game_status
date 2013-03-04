@@ -62,7 +62,7 @@ class PlayTime < ActiveRecord::Base
     return false
   end
 
-  def responded?
+  def responded?(user_id)
     attendee = self.attendees.find_by_user_id(user_id)
   end
 

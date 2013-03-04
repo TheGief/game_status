@@ -1,7 +1,7 @@
 class ConsolesController < ApplicationController
 
   def index
-    @consoles = Console.all
+    @consoles = Console.find(:all, order: :title)
     @owned_consoles = current_user.consoles
   end
 
