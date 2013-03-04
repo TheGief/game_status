@@ -5,7 +5,7 @@
   %ul.thumbnails
     - @games.each do |game|
       %li.span2
-        .thumbnail.center
+        .thumbnail.text-center
           = link_to image_tag(img_url(game.image_url, {h: 200, w: 150, t: :square, a: :top}), class: 'cover_img'), game_path(game)
           .caption
             %h5.title= link_to game.title, game

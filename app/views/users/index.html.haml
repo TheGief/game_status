@@ -1,15 +1,39 @@
-%h1.page-header Users
-%table.table.table-striped.table-bordered.table-hover
-  %thead
-    %tr
-      %th User
-      %th Status
-  %tbody
-    - @users.each do |user|
-      - if user.id != current_user.id
+%h1.page-header Friends
+
+.row-fluid
+  
+  .span6
+    %h4 Friends
+    %table.table.table-striped.table-bordered.table-hover
+      %thead
         %tr
-          %td= link_to user.username, user_path(user)
-          - if user.status.blank?
-            %td= link_to "Add Friend", req_friendship_path(user)
-          - else
-            %td= user.status
+          %th User
+          %th Status
+      %tbody
+        - @users.each do |user|
+          - if user.id != current_user.id && user.status == 'accepted'
+            %tr
+              %td= link_to user.username, user_path(user)
+              %td= user.status.capitalize
+
+  .span6
+    %h4 Users
+    %table.table.table-striped.table-bordered.table-hover
+      %thead
+        %tr
+          %th User
+          %th Status
+      %tbody
+        - @users.each do |user|
+          - if user.id != current_user.id && user.status != 'accepted'
+            %tr
+              %td= link_to user.username, user_path(user)
+              - if user.status.blank?
+                %td= link_to "Add Friend", req_friendship_path(user)
+              - elsif user.status == 'pending'
+                %td
+                  = link_to  "Accept", accept_friendship_path(user)
+                  or
+                  = link_to "Reject", reject_friendship_path(user)
+              - elsif user.status == 'requested'
+                %td= user.status.capitalize         
