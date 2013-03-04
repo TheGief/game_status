@@ -41,23 +41,21 @@
         .content
           .attendance_controls.pull-right
             - if play_time.attending?(current_user.id)
-              = link_to "Remove", unattend_path(play_time), class: 'remove'
+              = link_to "Pass", unattend_path(play_time), class: 'btn btn-mini pass'
             - else
-              = link_to "Add", attend_path(play_time), class: 'add'
               - if not play_time.responded?(current_user.id)
-                |
-                = link_to "Pass", unattend_path(play_time), class: 'remove'
+                = link_to "Pass", unattend_path(play_time), class: 'btn btn-mini pass'
+              = link_to "Add", attend_path(play_time), class: 'btn btn-mini btn-primary add'
           %p.info.lead
             #{play_time.start.strftime "%a %l:%M%p"} #{link_to play_time.game.title, play_time.game} on #{play_time.console.title}
           .created_by.pull-right
             %small.muted #{play_time.user.username}
           .meta
-            %span.time_in_words
-              %small.muted
-                - if play_time.in_progress?
-                  In Progress!
-                - else
-                  in #{distance_of_time_in_words_to_now play_time.start}
+            %span.time_in_words.muted
+              - if play_time.in_progress?
+                In Progress!
+              - else
+                in #{distance_of_time_in_words_to_now play_time.start}
             %span.attendance 
               %em
                 - play_time.attendees.where(attending: true).order(:attending).each do |attendee|
