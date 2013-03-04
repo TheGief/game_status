@@ -46,13 +46,8 @@ class User < ActiveRecord::Base
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
   validate :password_length_requirement
 
-  scope :with_game, -> id do
-    joins(:games).where 'games.id = ?', id
-  end
-
-  scope :with_console, -> id do
-    joins(:consoles).where 'consoles.id = ?', id
-  end
+  scope :with_game, -> (id) { joins(:games).where 'games.id = ?', id }
+  scope :with_console, -> (id) { joins(:consoles).where 'consoles.id = ?', id }
 
   def password_length_requirement
     return unless password.present? and not password.length >= 8

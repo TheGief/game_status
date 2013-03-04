@@ -9,9 +9,13 @@ class GamesController < ApplicationController
     id = params[:id]
     @game = Game.find(id)
     @owned_games = current_user.games
-    @friends_playing = current_user.friends.find(:all, :joins => {:play_times => [:game, :user]}, 
-                                                  :conditions => ["play_times.end > now() AND play_times.game_id = ?", id], 
-                                                  :order => "start desc")
+    @friends_with_game = current_user.friends.with_game @game
+
+    # Nate, do you still want to do this this? I noticed the placeholder in the ui was for 'with game' not 'playing game'.
+    #
+    # @friends_playing = current_user.friends.find(:all, :joins => {:play_times => [:game, :user]},
+    #                                               :conditions => ["play_times.end > now() AND play_times.game_id = ?", id],
+    #                                               :order => "start desc")
   end
 
   def new

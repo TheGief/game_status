@@ -15,4 +15,6 @@
   .span9.info
     %h2 Friends with this game:
     .well
-      %p Coming Soon...
+      %ul
+        - @friends_with_game.each do |friend|
+          %li= friend.username
