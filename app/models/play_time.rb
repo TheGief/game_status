@@ -9,8 +9,9 @@ class PlayTime < ActiveRecord::Base
   belongs_to :console
   has_many :attendees
 
-  scope :future, lambda { where("play_times.end > ?", Time.zone.now) }
-  scope :past, lambda { where("play_times.end < ?", Time.zone.now) }
+  scope :future,      lambda { where('play_times.end > ?', Time.zone.now) }
+  scope :past,        lambda { where('play_times.end < ?', Time.zone.now) }
+  scope :most_recent, lambda { order('created_at desc').limit(1) }
 
   validates :game_id, :console_id, :presence => true
   validate :check_start_time, :check_duration_text
