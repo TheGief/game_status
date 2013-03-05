@@ -6,8 +6,9 @@ class ConsolesController < ApplicationController
   end
 
   def show
-    @own_console = current_user.consoles.exists?(params[:id])
     @console = Console.find(params[:id])
+    @own_console = current_user.consoles.exists?(params[:id])
+    @friends_with_console = current_user.friends.with_console @console
   end
 
   def new

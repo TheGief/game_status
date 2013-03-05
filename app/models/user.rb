@@ -7,11 +7,9 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
 
-  # has_and_belongs_to_many :games, :uniq => true, :order => :title
   has_many :games_user
   has_many :games, through: :games_user
 
-  # has_and_belongs_to_many :consoles, :uniq => true, :order => :title
   has_many :consoles_user
   has_many :consoles, through: :consoles_user
 

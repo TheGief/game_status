@@ -1,3 +1,12 @@
-.page-header
-  %h1= @user.username
-  %h4= link_to "Add Friend", req_friendship_path
+%h1.page-header= @user.username
+.row
+  .span6
+    %h2 Games
+    %ul
+      - @games.each do |game|
+        %li= link_to game.title, game_path(game)
+  .span6
+    %h2 Consoles
+    %ul
+      - @consoles.each do |console|
+        %li= link_to console.title, console_path(console)

@@ -6,9 +6,8 @@ class GamesController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @game = Game.find(id)
-    @owned_games = current_user.games
+    @game = Game.find(params[:id])
+    @own_game = current_user.games.exists?(params[:id])
     @friends_with_game = current_user.friends.with_game @game
   end
 
