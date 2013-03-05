@@ -15,14 +15,7 @@
   .span9.info
     %h2 Friends with this game:
     .well
-<<<<<<< HEAD
-      %ul
-        - @friends_with_game.each do |friend|
-          %li= friend.username
-=======
       %ul.stack
         - @friends_with_game.each do |friend|
           %li
             =link_to friend.username, user_path(friend)
-
->>>>>>> Add friends with game and game index styles
