@@ -1,4 +1,14 @@
 // Games
 body.games
-  ul.thumbnails li:nth-child(7n+0)
-    margin-left: 0
+  
+  ul.thumbnails
+
+    li:nth-child(7n+0)
+      margin-left: 0
+
+    ul.thumbnails .title
+      @media (min-width: 768px) and (max-width: 979px)
+        display: none
+
+    h5
+      height: 40px
