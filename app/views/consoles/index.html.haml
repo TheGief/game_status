@@ -3,7 +3,7 @@
   %h4= link_to 'Create Console', new_console_path
 .row-fluid
   %ul.thumbnails
-    - @consoles.each_with_index do |console, i|
+    - @consoles.each do |console|
       %li.span3
         .thumbnail.text-center
           = cover_img(console)

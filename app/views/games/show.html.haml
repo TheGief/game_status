@@ -17,7 +17,6 @@
     .well
       %ul.stack
         - @friends_with_game.each do |friend|
-          %li
-            =link_to friend.username, user_path(friend)
+          %li= link_to friend.username, user_path(friend)
         - if @friends_with_game.empty?
           %li No friends with this game

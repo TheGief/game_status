@@ -3,10 +3,11 @@
 .row
   .span6
     %h4 New Play Time
+
     = form_for @play_time, html: { class: 'form-horizontal' } do |f|
       
       .control-group
-        = f.label :notify, "Tell friends", class: 'control-label'
+        = f.label :notify, "Tell <span id='tell'></span> friends".html_safe, class: 'control-label'
         .controls
           = f.check_box :notify
 
@@ -59,6 +60,6 @@
             %span.attendance 
               %em
                 - play_time.attendees.where(attending: true).order(:attending).each do |attendee|
-                  = image_tag attendee.user.gravatar_url({size: 25}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is in!', class: 'attendee in'
+                  = link_to image_tag(attendee.user.gravatar_url({size: 25}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is in!', class: 'attendee in'), user_path(attendee.user)
                 - play_time.attendees.where(attending: false).each do |attendee|
-                  = image_tag attendee.user.gravatar_url({size: 25}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is out...', class: 'attendee out'
+                  = link_to image_tag(attendee.user.gravatar_url({size: 25}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is out...', class: 'attendee out'), user_path(attendee.user)

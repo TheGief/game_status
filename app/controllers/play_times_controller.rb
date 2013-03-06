@@ -48,8 +48,8 @@ class PlayTimesController < ApplicationController
 private
 
   def play_times
-    me_and_my_friends = current_user.friends.to_a.push current_user
-    PlayTime.future.joins(:user, :game, :console, {:attendees => :user}).where(:attendees => {user_id: me_and_my_friends}).uniq.order(:start)
+    current_user_and_friends = current_user.friends.to_a.push current_user
+    PlayTime.future.joins(:user, :game, :console, {:attendees => :user}).where(:attendees => {user_id: current_user_and_friends}).uniq.order(:start)
   end
 
 end

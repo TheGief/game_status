@@ -15,7 +15,7 @@ GameStatus::Application.routes.draw do
   resources :play_times
 
   get 'users/:id' => 'users#show', :as => 'user'
-  
+  get 'users/with/game/:game_id/console/:console_id' => 'users#with_game_and_console', :as => 'with_game_and_console'
   get 'games/:id/add_remove' => 'games#add_remove', :as => 'add_remove_game'
   
   get 'consoles/:id/add_remove' => 'consoles#add_remove', :as => 'add_remove_console'

@@ -10,4 +10,8 @@ class UsersController < ApplicationController
     @games = @user.games
     @consoles = @user.consoles
   end
+
+  def with_game_and_console
+    render text: current_user.friends.with_game(params[:game_id]).with_console(params[:console_id]).length
+  end
 end
