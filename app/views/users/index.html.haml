@@ -10,11 +10,15 @@
           %th User
           %th Status
       %tbody
-        - @users.each do |user|
-          - if user.id != current_user.id && user.status == 'accepted'
-            %tr
-              %td= link_to user.username, user_path(user)
-              %td= user.status.capitalize
+        - @friends.each do |user|
+          %tr
+            %td
+              = image_tag user.gravatar_url({size: 20}), data: {toggle: "tooltip"}
+              = link_to user.username, user_path(user)
+            %td= user.status.capitalize
+        - if @friends.empty?
+          %tr
+            %td{colspan: 2} Request some friendships
 
   .span6
     %h4 Users
@@ -24,16 +28,20 @@
           %th User
           %th Status
       %tbody
-        - @users.each do |user|
-          - if user.id != current_user.id && user.status != 'accepted'
-            %tr
-              %td= link_to user.username, user_path(user)
-              - if user.status.blank?
-                %td= link_to "Add Friend", req_friendship_path(user)
-              - elsif user.status == 'pending'
-                %td
-                  = link_to  "Accept", accept_friendship_path(user)
-                  or
-                  = link_to "Reject", reject_friendship_path(user)
-              - elsif user.status == 'requested'
-                %td= user.status.capitalize         
+        - @not_friends.each do |user|
+          %tr
+            %td
+              = image_tag user.gravatar_url({size: 20}), data: {toggle: "tooltip"}
+              = link_to user.username, user_path(user)
+            - if user.status.blank?
+              %td= link_to "Add Friend", req_friendship_path(user)
+            - elsif user.status == 'pending'
+              %td
+                = link_to  "Accept", accept_friendship_path(user)
+                or
+                = link_to "Reject", reject_friendship_path(user)
+            - elsif user.status == 'requested'
+              %td= user.status.capitalize         
+        - if @not_friends.empty?
+          %tr
+            %td{colspan: 2} Looks like you are friends with everyone...
