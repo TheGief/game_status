@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || play_path
   end
 
-  # def user_time_zone(&block)
-  #   Time.use_zone(current_user.time_zone, &block)
-  # end
+  def user_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
+  end
 
 end
