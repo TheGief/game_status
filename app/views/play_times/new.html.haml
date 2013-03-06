@@ -6,10 +6,11 @@
 
     = form_for @play_time, html: { class: 'form-horizontal' } do |f|
       
-      .control-group
-        = f.label :notify, "Tell <span id='tell'></span> friends".html_safe, class: 'control-label'
+      #tell.control-group
+        = f.label :notify, "Tell <span id='tell_count'></span> friends".html_safe, class: 'control-label'
         .controls
           = f.check_box :notify
+          %span#tell_names.help-block
 
       .control-group
         = f.label :start_time, "at", class: 'control-label'
