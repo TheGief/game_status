@@ -1,12 +1,20 @@
 %h1.page-header= @user.username
 .row
-  .span6
-    %h2 Games
-    %ul
-      - @games.each do |game|
-        %li= link_to game.title, game_path(game)
-  .span6
+  .span4
+    = image_tag @user.gravatar_url({size: 370}), data: {toggle: "tooltip"}
+  .span3.offset1
     %h2 Consoles
     %ul
       - @consoles.each do |console|
         %li= link_to console.title, console_path(console)
+      - if @consoles.empty?
+        %li
+          User has not added consoles...
+    %h2 Games
+    %ul
+      - @games.each do |game|
+        %li= link_to game.title, game_path(game)
+      - if @games.empty?
+        %li User has not added games...
+  .span4
+    %h2 Something useful here...
