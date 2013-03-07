@@ -50,7 +50,7 @@
               = link_to "Add", attend_path(play_time), class: 'btn btn-mini btn-primary add'
           %p.info.lead
             #{play_time.start.strftime "%a %l:%M%p"} #{link_to play_time.game.title, play_time.game} on #{play_time.console.title}
-          %p #{Time.zone.name}
+          %p #{Time.zone.name} #{play_time.start}
           .created_by.pull-right
             %small.muted #{play_time.user.username}
           .meta
