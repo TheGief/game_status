@@ -13,6 +13,7 @@ gem 'twilio-ruby'
 gem 'chronic'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'therubyracer', :platforms => :ruby

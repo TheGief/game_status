@@ -144,6 +144,7 @@ GEM
     multi_json (1.6.1)
     mysql2 (0.3.11)
     mysql2 (0.3.11-x86-mingw32)
+    newrelic_rpm (3.5.8.72)
     nokogiri (1.5.6)
     nokogiri (1.5.6-x86-mingw32)
     orm_adapter (0.4.0)
@@ -285,6 +286,7 @@ DEPENDENCIES
   meta_request
   mocha
   mysql2
+  newrelic_rpm
   pg
   rails (= 3.2.12)
   rb-fsevent
