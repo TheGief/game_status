@@ -9,7 +9,7 @@
       #tell.control-group
         = f.label :notify, "Tell <span id='tell_count'></span> friends".html_safe, class: 'control-label'
         .controls
-          = f.check_box :notify
+          = f.check_box :notify, autofocus: true
           %span#tell_names.help-block
 
       .control-group
@@ -50,7 +50,6 @@
               = link_to "Add", attend_path(play_time), class: 'btn btn-mini btn-primary add'
           %p.info.lead
             #{play_time.start.strftime "%a %l:%M%p"} #{link_to play_time.game.title, play_time.game} on #{play_time.console.title}
-          %p #{Time.zone.name} #{play_time.start}
           .created_by.pull-right
             %small.muted #{play_time.user.username}
           .meta
