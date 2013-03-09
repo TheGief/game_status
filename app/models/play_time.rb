@@ -21,14 +21,17 @@ class PlayTime < ActiveRecord::Base
 
   # start_time virtual attribute
   def start_time
+    Chronic.time_class = Time.zone
     @start_time || Chronic.parse(self.start)
   end
 
   def save_start_time
+    Chronic.time_class = Time.zone
     self.start = Chronic.parse(@start_time) if @start_time.present?
   end
 
   def check_start_time
+    Chronic.time_class = Time.zone
     if !@start_time.present?
       errors.add "Start time", "(at) is required"
     elsif @start_time.present? && Chronic.parse(@start_time).nil?
@@ -44,10 +47,12 @@ class PlayTime < ActiveRecord::Base
   end
 
   def save_duration_text
+    Chronic.time_class = Time.zone
     self.end = Chronic.parse(@duration_text + " from " + @start_time) if @duration_text.present?
   end
 
   def check_duration_text
+    Chronic.time_class = Time.zone
     if !@duration_text.present?
       errors.add "Duration", "(for) is required"
     elsif @duration_text.present? && Chronic.parse(@duration_text + " from " + @start_time).nil?
