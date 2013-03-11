@@ -14,6 +14,7 @@ gem 'chronic'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'newrelic_rpm'
+gem "google_visualr"
 
 group :assets do
   gem 'therubyracer', :platforms => :ruby

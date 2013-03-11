@@ -1,7 +1,7 @@
 %h1.page-header= @user.username
 .row
-  .span4
-    = image_tag @user.gravatar_url({size: 370}), data: {toggle: "tooltip"}
+  .span2
+    = image_tag @user.gravatar_url({size: 170}), data: {toggle: "tooltip"}
   .span3.offset1
     %h2 Consoles
     %ul
@@ -16,5 +16,7 @@
         %li= link_to game.title, game_path(game)
       - if @games.empty?
         %li User has not added games...
-  .span4
-    %h2 Something useful here...
+  .span5
+    %h2 Stats
+    #chart
+    = render_chart @chart, 'chart'

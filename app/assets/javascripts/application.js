@@ -11,14 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery_ujs
 //= require bootstrap-collapse
 //= require bootstrap-tooltip
 //= require bootstrap-popover
 //= require bootstrap-dropdown
 //= require turbolinks
 //= require_tree .
-//
-// Loads all Bootstrap javascripts (add = to enable)
-// require bootstrap

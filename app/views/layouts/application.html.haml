@@ -9,12 +9,12 @@
     %meta{:charset => 'utf-8'}
     = csrf_meta_tags
     = stylesheet_link_tag    :application, media: "all"
-    = javascript_include_tag :application
+    = javascript_include_tag :application, 'http://www.google.com/jsapi'
 
   %body{class: controller.controller_name}
     = render 'layouts/header'
     .container{class: controller.action_name}
       .flash
         = render 'layouts/flashes' if flash.any?
-      = yield 
+      = yield
     = render 'layouts/footer'
