@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @consoles = @user.consoles
     
     # Games Played
-    duration_stats = Attendee.joins(:user, {:play_time => :game}).where(user_id: current_user, attending: true).group(:title).sum(:duration)
+    duration_stats = Attendee.joins(:user, {:play_time => :game}).where(user_id: @user, attending: true).group(:title).sum(:duration)
     duration_stats = duration_stats.to_a
     duration_stats.map {|row| row[1] = row[1].to_i}
     data_table = GoogleVisualr::DataTable.new
