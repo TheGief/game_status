@@ -18,7 +18,7 @@ $ ->
 
 
   # Form field tips
-  $(".pop").popover {trigger: focus}
+  $(".pop").popover {trigger: 'focus'}
 
 
   # Gravatar images have username tips
