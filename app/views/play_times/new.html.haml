@@ -15,7 +15,7 @@
       .control-group
         = f.label :start_time, "at", class: 'control-label'
         .controls
-          = f.text_field :start_time, placeholder: '8 pm', class: 'span2 pop', title: 'Future Start Time', data: { :content => '2pm, Tomorrow 5:30pm, Sunday 11am, Tue 10 to 8, January 5 at 7pm' }
+          = f.text_field :start_time, placeholder: '8 pm', class: 'span2 pop', title: 'Future Start Time', data: { :content => 'Now, 2pm, Tomorrow 5:30pm, Sunday 11am, Tue 10 to 8, January 5 at 7pm' }
 
       .control-group
         = f.label :game_id, "I'm playing", class: 'control-label'
@@ -30,38 +30,13 @@
       .control-group
         = f.label :duration_text, "for", class: 'control-label'
         .controls
-          = f.text_field :duration_text, placeholder: '2 hrs', class: 'span2 pop', title: 'Duration', data: { :content => ' 45min, 1hr, 2hr, 3hr' }
+          = f.text_field :duration_text, placeholder: '2 hrs', class: 'span2 pop', title: 'Duration', data: { :content => '45min, 90min, 1hr, 2hr, 2hr 30min' }
 
       .control-group
         .controls
           = f.submit 'Create', class: 'btn btn-success', disable_with: "Creating..."
  
   .span6
-    %h4 My Play Times
+    %h4 Play Times
     - @play_times.each do |play_time|
-      .well.well-small.play_time
-        .content
-          .attendance_controls.pull-right
-            - if play_time.attending?(current_user.id)
-              = link_to "Pass", unattend_path(play_time), class: 'btn btn-mini pass'
-            - else
-              - if not play_time.responded?(current_user.id)
-                = link_to "Pass", unattend_path(play_time), class: 'btn btn-mini pass'
-              = link_to "Add", attend_path(play_time), class: 'btn btn-mini btn-primary add'
-          %p.info.lead
-            %abbr{title: play_time.start}= play_time.start.strftime "%a %l:%M%p"
-            #{link_to play_time.game.title, play_time.game} on #{play_time.console.title}
-          .created_by.pull-right
-            %small.muted #{play_time.user.username}
-          .meta
-            %span.time_in_words.muted
-              - if play_time.in_progress?
-                In Progress!
-              - else
-                in #{distance_of_time_in_words_to_now play_time.start}
-            %span.attendance 
-              %em
-                - play_time.attendees.where(attending: true).order(:attending).each do |attendee|
-                  = link_to image_tag(attendee.user.gravatar_url({size: 25}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is in!', class: 'attendee in'), user_path(attendee.user)
-                - play_time.attendees.where(attending: false).each do |attendee|
-                  = link_to image_tag(attendee.user.gravatar_url({size: 25}), data: {toggle: "tooltip"}, title: attendee.user.username + ' is out...', class: 'attendee out'), user_path(attendee.user)
+      = render partial: 'play_time', locals: {play_time: play_time}

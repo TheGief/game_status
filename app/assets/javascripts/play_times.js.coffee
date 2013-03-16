@@ -22,4 +22,4 @@ $ ->
 
 
   # Gravatar images have username tips
-  $("img.attendee").tooltip()
+  $("img.attendee, abbr").tooltip()
