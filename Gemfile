@@ -11,8 +11,6 @@ gem 'thin'
 gem 'pg'
 gem 'twilio-ruby'
 gem 'chronic'
-gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'newrelic_rpm'
 gem "google_visualr"
 
