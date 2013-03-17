@@ -1,23 +1,16 @@
-.well.well-small.play_time
+.well.well-small.play_time{class: (flash[:action] if flash[:id] == play_time.id)}
+
   .content
-    
+
     %p.info.lead
       %abbr{title: play_time.start.strftime("%A %b %e,%l:%M%p %z") + ' (' + play_time.user.username + ')' }= play_time.start.strftime "%a %l:%M%p"
-      #{link_to play_time.game.title, play_time.game} on #{link_to play_time.console.title, play_time.console} for 
-      - if play_time.duration < 60
-        #{play_time.duration}mins
-      - elsif play_time.duration < 120
-        1hr
-      - else
-        #{play_time.duration / 60}hrs
-      - if play_time.duration > 60 && play_time.duration % 60 > 0
-        #{play_time.duration % 60}mins
+      #{link_to play_time.game.title, play_time.game} on #{link_to play_time.console.title, play_time.console} for #{play_time.duration_in_hours_minutes}
     
     .attendance_controls.pull-right
       - if play_time.attending?(current_user.id)
         = link_to "Pass", unattend_path(play_time), class: 'btn btn-mini pass'
       - else
-        - if not play_time.responded?(current_user.id)
+        - unless play_time.responded?(current_user.id)
           = link_to "Pass", unattend_path(play_time), class: 'btn btn-mini pass'
         = link_to "Add", attend_path(play_time), class: 'btn btn-mini btn-primary add'
 

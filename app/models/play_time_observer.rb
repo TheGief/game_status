@@ -8,7 +8,7 @@ class PlayTimeObserver < ActiveRecord::Observer
     console = play_time.console
     friends = sender.friends.with_game(game.id).with_console(console.id)
 
-    message = "#{sender.username} is playing #{game.title} @ #{play_time.start_time}"
+    message = "#{sender.username} is playing #{game.title} @ #{play_time.start.strftime "%a%l:%M%p"} (#{play_time.distance_of_time}) for #{play_time.duration_in_hours_minutes}"
 
     if play_time.notify && friends.any?
       friends.each do |friend| # How to do time zone for each friend? : Time.use_zone friend.time_zone

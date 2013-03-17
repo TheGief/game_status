@@ -16,7 +16,6 @@ $ ->
   $(document).on 'change', 'body.play_times select', ->
     friend_count()
 
-
   # Form field tips
   $(".pop").popover {trigger: 'focus'}
 

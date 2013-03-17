@@ -1,5 +1,7 @@
 class PlayTime < ActiveRecord::Base
 
+  include ActionView::Helpers::DateHelper
+
   attr_accessible :start_time, :duration_text, :game_id, :console_id, :user_id, :notify
   attr_writer :start_time
   attr_writer :duration_text
@@ -75,6 +77,32 @@ class PlayTime < ActiveRecord::Base
   def attending?(user_id)
     attendee = self.attendees.find_by_user_id(user_id)
     return attendee.attending if attendee
+  end
+
+  def notify?
+    return self.notify
+  end
+
+  def duration_in_hours_minutes
+    q, r = self.duration.divmod(60)
+    words = ''
+
+    if q == 1
+      words = q.to_s + 'hr'
+    elsif q != 0
+      words = q.to_s + 'hrs'
+    end
+
+    if r == 1
+      words += ' ' + r.to_s + 'min'
+    elsif r > 1
+      words += ' ' + r.to_s + 'mins'
+    end
+    return words
+  end
+
+  def distance_of_time
+    self.in_progress? ? "Right Now!" : 'in ' + distance_of_time_in_words_to_now(self.start)
   end
 
 private
