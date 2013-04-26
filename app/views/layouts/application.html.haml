@@ -9,7 +9,8 @@
     %meta{:charset => 'utf-8'}
     = csrf_meta_tags
     = stylesheet_link_tag    :application, media: "all"
-    = javascript_include_tag :application, 'http://www.google.com/jsapi'
+    = javascript_include_tag 'http://js.pusher.com/2.0/pusher.min.js', :application
+    = render partial: 'layouts/javascript'
 
   %body{class: controller.controller_name}
     = render 'layouts/header'

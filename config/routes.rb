@@ -1,7 +1,7 @@
 GameStatus::Application.routes.draw do
 
   root :to => 'home#index'
-  
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   devise_scope :user do
@@ -17,9 +17,9 @@ GameStatus::Application.routes.draw do
   get 'users/:id' => 'users#show', :as => 'user'
   get 'users/with/game/:game_id/console/:console_id' => 'users#with_game_and_console', :as => 'with_game_and_console'
   get 'games/:id/add_remove' => 'games#add_remove', :as => 'add_remove_game'
-  
+
   get 'consoles/:id/add_remove' => 'consoles#add_remove', :as => 'add_remove_console'
-  
+
   get 'friends' => 'users#index', :as => 'friends'
   get 'friendship/req/:id' => 'friendships#req', :as => 'req_friendship'
   get 'friendship/accept/:id' => 'friendships#accept', :as => 'accept_friendship'
@@ -28,6 +28,9 @@ GameStatus::Application.routes.draw do
   get 'play' => 'play_times#new', :as => 'play'
   get 'play/:id/attend' => 'play_times#attend', :as => 'attend'
   get 'play/:id/unattend' => 'play_times#unattend', :as => 'unattend'
+
+  post 'pusher/user_status' => 'pusher#user_status', :as => 'user_status'
+  post 'pusher/auth' => 'pusher#auth', :as => 'pusher_auth'
 
   post 'sms' => 'sms#listener'
 end

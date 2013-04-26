@@ -13,6 +13,7 @@ gem 'twilio-ruby'
 gem 'chronic'
 gem 'newrelic_rpm'
 gem "google_visualr"
+gem "pusher"
 
 group :assets do
   gem 'therubyracer', :platforms => :ruby
@@ -29,6 +30,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'pry-rails'
 end
 
 group :test do

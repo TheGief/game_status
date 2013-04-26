@@ -2,9 +2,15 @@ class PlayTimesController < ApplicationController
 
   def new
     @play_time = PlayTime.new
-    
+
     # for sidebar
     @play_times = play_times
+
+    if request.xhr?
+      render partial: 'play_list', layout: false
+    else
+      render
+    end
   end
 
   def create
@@ -16,6 +22,7 @@ class PlayTimesController < ApplicationController
     @play_times = play_times
 
     if @play_time.save
+      Pusher.trigger 'play', 'created', {:time => Time.current.to_i}
       redirect_to play_path, notice: 'Play time was successfully created.'
     else
       render action: 'new', params: params[:play_time]
@@ -26,8 +33,9 @@ class PlayTimesController < ApplicationController
     @play_time = PlayTime.find params[:id]
     @attendee = @play_time.attendees.find_or_create_by_user_id(current_user.id)
 
-    if @attendee 
+    if @attendee
       @attendee.update_attributes attending: true
+      Pusher.trigger 'play', 'created', {:time => Time.current.to_i}
       redirect_to play_path, notice: 'You have been added to the play time!', flash: {action: 'attend', id: @play_time.id}
     else
       redirect_to play_path, notice: 'Error adding to the play time.'
@@ -37,15 +45,20 @@ class PlayTimesController < ApplicationController
   def unattend
     @play_time = PlayTime.find params[:id]
     @attendee = @play_time.attendees.find_or_create_by_user_id(current_user.id)
-    
+
     if @attendee.update_attributes attending: false
+      Pusher.trigger 'play', 'created', {:time => Time.current.to_i}
       redirect_to play_path, notice: 'Too bad you can\'t make it. Maybe next time.', flash: {action: 'unattend', id: @play_time.id}
-    else  
+    else
       redirect_to play_path, notice: 'Error removing you from play time.'
     end
   end
 
-private
+  def list
+    @play_times = play_times
+  end
+
+  private
 
   def play_times
     current_user_and_friends = current_user.friends.to_a.push current_user

@@ -5,7 +5,7 @@
     %h4 New Play Time
 
     = form_for @play_time, html: { class: 'form-horizontal' } do |f|
-      
+
       #tell.control-group
         = f.label :notify, "Tell <span id='tell_count'></span> friends".html_safe, class: 'control-label'
         .controls
@@ -35,8 +35,10 @@
       .control-group
         .controls
           = f.submit 'Create', class: 'btn btn-success', disable_with: "Creating..."
- 
-  .span6
-    %h4 Play Times
-    - @play_times.each do |play_time|
-      = render partial: 'play_time', locals: {play_time: play_time}
+
+  .span6#play_list
+    = render partial: 'play_list'
+
+:coffeescript
+  $ ->
+    GS.pusher.play()

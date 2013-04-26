@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :time_zone, :notify_email, :notify_sms
+  attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :time_zone, :notify_email, :notify_sms, :online
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :token_authenticatable,
     :confirmable, :lockable # :timeoutable, :omniauthable
@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
 
   def email_hash
     Digest::MD5.hexdigest(email)
+  end
+
+  def online?
+    !!online
   end
 
 end
