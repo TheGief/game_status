@@ -1,4 +1,4 @@
 Game Status
 ===========
 
-**Official website:** http://gamestat.us
+*Official website:** http://gamestat.us
