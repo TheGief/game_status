@@ -11,7 +11,7 @@ gem 'thin'
 gem 'pg'
 gem 'twilio-ruby'
 gem 'chronic'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem "google_visualr"
 
 group :assets do
